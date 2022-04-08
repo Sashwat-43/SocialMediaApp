@@ -1,0 +1,84 @@
+.LeftSideBar{
+    height:calc(100vh - 70px);
+    flex: 3;
+    overflow-y: scroll;
+}
+
+.Wrap{
+    padding:20px;
+}
+
+.ItemsList{
+    padding: 0;
+    list-style: none;
+}
+
+.ItemsList li{
+    display: flex;
+    align-items: center;
+    margin-bottom:20px;
+}
+
+.ItemsList li .Text{
+    cursor: pointer;
+}
+
+.ItemsList:nth-child(1){
+    margin-top: 25px;
+}
+
+.ItemsList .Text{
+    margin-left: 10px;
+}
+
+.Button{
+    cursor: pointer;
+    border:none;
+    width:80px;
+    font-size: 18px;
+    font-weight: bolder;
+    margin: 10px 15px;
+}
+
+.Line{
+    margin-top: 10px;
+    width:90%;
+}
+
+.Friends{
+    padding: 0;
+    margin-left: 0;
+    margin-right: 5px;
+    border-radius: 50%;
+    margin-top: 20px;
+    list-style: none;
+}
+
+.Friend{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.FriendName{
+    margin-left: 10px;
+}
+
+.FriendImage{
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+}
+
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: rgb(249, 248, 248);
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: rgb(215, 214, 214);
+}
