@@ -1,0 +1,105 @@
+.TopNavBarContainer{
+    height:70px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    position: sticky;
+    top:0;
+    background-color: rgb(0, 95, 173);
+}
+
+.TopNavBarLeft{
+    flex: 1;
+}
+
+.TopNavBarCenter{
+    margin-left: 5px;
+    margin-right: 5px;
+    flex: 3;
+}
+
+.TopNavBarRight{
+
+    flex: 2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.TopNavBarImage{
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    margin-right: 5px;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.icon{
+    margin-left: 15px;
+    font-weight: bold;
+    color:white;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.Search{
+    display: flex;
+    align-items: center;
+    height: 34px;
+    width: 100%;
+    margin-left: 5px;
+    background-color: white;
+    border-radius: 33px;
+}
+
+.SearchLogo{
+    font-size: 25px !important;
+    margin-left: 5px;
+}
+
+.SearchInput{
+    width:60%;
+    border: none;
+}
+
+.SearchInput:focus{
+    outline: none;
+}
+
+.TopNavBarLinks{
+    margin-right: 15px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.Link1{
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+
+.TopNavBarIcons{
+    display: flex;
+}
+
+.TopNavBarIcon{
+    margin-right: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.TopNavBarIconCount{
+    width: 16px;
+    height: 16px;
+    font-size: 14px;
+    background-color:rgb(149, 4, 4);
+    border-radius: 50%;
+    position: absolute;
+    top:-5px;
+    right:-5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
