@@ -1,0 +1,82 @@
+.SharePost{
+    height:180px;
+    width: 100%;
+    margin: 5px auto;
+    border-radius: 20px;
+    -webkit-box-shadow: 1px 2px 7px 6px rgba(0,0,0,0.28);
+    -moz-box-shadow: 1px 2px 7px 6px rgba(0,0,0,0.28);
+    box-shadow: 1px 2px 7px 6px rgba(0,0,0,0.28);
+}
+
+.SharePostWrap{
+    padding: 10px;
+}
+
+.SharePostTop{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ShareTopProfile{
+    height:45px;
+    width: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.SharePostInput{
+    margin-left: 5px;
+    width: 70%;
+    border: none;
+
+}
+
+.SharePostInput:focus{
+    outline: none;
+}
+
+.SharePostLine{
+    margin-bottom: 10px;
+}
+
+.SharePostBottom{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* justify-content: space-between; */
+}
+
+.SharePostOptions{
+    margin-top:10px;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+
+.Option{
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.SharePostIcon{
+    font-size: 15px;
+}
+
+.ShareText{
+    margin-left: 1px;
+}
+
+.SharePostButton{
+    margin: 20px 48%;
+    font-size: 18px;
+    font-weight: bolder;
+    color:white;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: rgb(18, 74, 226);
+    border: none;
+}

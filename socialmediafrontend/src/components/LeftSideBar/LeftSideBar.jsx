@@ -6,48 +6,48 @@ import {Feed,Chat,Work,Event,Favorite,Bookmarks} from '@mui/icons-material';
 export default function LeftSideBar() {
   return (
     <div className='LeftSideBar'>
-        <div className='Wrap'>
-            <ul className='ItemsList'>
-                <li className='Item'>
-                    <Feed className='Feed'/>
-                    <span className='Text'>
+        <div className='LeftSideBarWrap'>
+            <ul className='LeftSideBarItemsList'>
+                <li className='LeftSideBarItem'>
+                    <Feed className='LeftSideBarFeed'/>
+                    <span className='LeftSideBarText'>
                         Feed
                     </span>
                 </li>
-                <li className='Item'>
+                <li className='LeftSideBarItem'>
                     <Chat className='Chat'/>
-                    <span className='Text'>
+                    <span className='LeftSideBarText'>
                         Chat
                     </span>
                 </li>
-                <li className='Item'>
+                <li className='LeftSideBarItem'>
                     <Work className='Work'/>
-                    <span className='Text'>
+                    <span className='LeftSideBarText'>
                         Work
                     </span>
                 </li>
-                <li className='Item'>
+                <li className='LeftSideBarItem'>
                     <Event className='Event'/>
-                    <span className='Text'>
+                    <span className='LeftSideBarText'>
                         Event
                     </span>
                 </li>
-                <li className='Item'>
+                <li className='LeftSideBarItem'>
                     <Favorite className='Favorites'/>
-                    <span className='Text'>
+                    <span className='LeftSideBarText'>
                         Favorites
                     </span>
                 </li>
-                <li className='Item'>
+                <li className='LeftSideBarItem'>
                     <Bookmarks className='Bookmarks'/>
-                    <span className='Text'>
+                    <span className='LeftSideBarText'>
                         Bookmarks
                     </span>
                 </li>
             </ul>
-            <button className='Button'>More  </button>
-            <hr className='Line'/>
-            <ul className='Friends'>
+            <button className='LeftSideBarButton'>More  </button>
+            <hr className='LeftSideBarLine'/>
+            <ul className='LeftSideBarFriends'>
                 <li className='Friend'>
                     <img className='FriendImage' src='/assets/profilePics/pic2.png' alt="Friend's Pic"/>
                     <span className='FriendName'>Sashwat</span>

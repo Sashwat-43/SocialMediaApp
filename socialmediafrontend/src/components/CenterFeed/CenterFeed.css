@@ -1,3 +1,7 @@
 .CenterFeed{
     flex:6;
 }
+
+.CenterWrap{
+    padding:10px;
+}

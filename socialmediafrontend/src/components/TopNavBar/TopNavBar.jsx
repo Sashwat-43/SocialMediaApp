@@ -10,7 +10,7 @@ export default function TopNavBar() {
             <span className='icon'>Socialgram</span>
         </div>
         <div className='TopNavBarCenter'>
-            <div className= 'Search'>
+            <div className= 'TopNavBarSearch'>
                 <Search className='SearchLogo'/>
                 <input className='SearchInput' placeholder='Search for post/video/friend'></input>
             </div>

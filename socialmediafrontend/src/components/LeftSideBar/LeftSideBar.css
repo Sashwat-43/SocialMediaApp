@@ -4,34 +4,34 @@
     overflow-y: scroll;
 }
 
-.Wrap{
+.LeftSideBarWrap{
     padding:20px;
 }
 
-.ItemsList{
+.LeftSideBarItemsList{
     padding: 0;
     list-style: none;
 }
 
-.ItemsList li{
+.LeftSideBarItemsList li{
     display: flex;
     align-items: center;
     margin-bottom:20px;
 }
 
-.ItemsList li .Text{
+.LeftSideBarItemsList li .LeftSideBarText{
     cursor: pointer;
 }
 
-.ItemsList:nth-child(1){
+.LeftSideBarItemsList:nth-child(1){
     margin-top: 25px;
 }
 
-.ItemsList .Text{
+.LeftSideBarItemsList .LeftSideBarText{
     margin-left: 10px;
 }
 
-.Button{
+.LeftSideBarButton{
     cursor: pointer;
     border:none;
     width:80px;
@@ -40,12 +40,12 @@
     margin: 10px 15px;
 }
 
-.Line{
+.LeftSideBarLine{
     margin-top: 10px;
     width:90%;
 }
 
-.Friends{
+.LeftSideBarFriends{
     padding: 0;
     margin-left: 0;
     margin-right: 5px;
