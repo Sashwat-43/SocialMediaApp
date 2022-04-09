@@ -1,0 +1,101 @@
+.Post{
+    margin-top: 20px;
+    width:100%;
+    border-radius: 5px;
+    -webkit-box-shadow: 1px 2px 7px 6px rgba(0,0,0,0.28);
+    -moz-box-shadow: 1px 2px 7px 6px rgba(0,0,0,0.28);
+    box-shadow: 1px 2px 7px 6px rgba(0,0,0,0.28);
+}
+
+.PostWrap{
+    padding:10px;
+}
+
+.PostTop{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.PostTopLeft{
+    display: flex;
+    align-items: center;
+}
+
+.PostTopLeftImage{
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.PostTopName{
+    margin-left: 10px;
+    font-size: large;
+    background-color: rgb(235, 232, 232);
+    border-radius: 2px;
+    padding:3px;
+    font-weight: bolder;
+}
+
+.PostTopDate{
+    font-weight: 100;
+    font-size: small;
+    margin-left: 15px;
+}
+
+.Vertical{
+    cursor: pointer;
+}
+
+.PostMiddle{
+    margin-top: 10px;
+}
+
+.PostMiddleImage{
+    border-radius: 3px;
+    margin-top: 15px;
+    object-fit: contain;
+    max-height: 450px;
+    width: 100%;
+}
+
+.PostBottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.PostBottomLeft{
+    display: flex;
+    align-items: center;
+}
+
+.PostBottomLike{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    object-fit: contain;
+}
+
+.PostLikes{
+    margin-left: 5px;
+    font-weight: bolder;
+    font-size: 18px;
+    font-family: 'Style Script', cursive;
+}
+
+.PostBottomLove{
+    cursor: pointer;
+    margin-left: 5px;
+    height: 30px;
+    width: 30px;
+    object-fit: contain;
+}
+
+.PostComments{
+    border-bottom: 1px dashed rgb(47, 46, 46);
+    cursor: pointer;
+}
