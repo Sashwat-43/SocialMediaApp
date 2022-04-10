@@ -1,7 +1,7 @@
 import React from 'react'
 import './LeftSideBar.css';
 import {Feed,Chat,Work,Event,Favorite,Bookmarks} from '@mui/icons-material';
-
+import {Users} from '../../CheckData';
 
 export default function LeftSideBar() {
   return (
@@ -48,31 +48,14 @@ export default function LeftSideBar() {
             <button className='LeftSideBarButton'>More  </button>
             <hr className='LeftSideBarLine'/>
             <ul className='LeftSideBarFriends'>
-                <li className='Friend'>
-                    <img className='FriendImage' src='/assets/profilePics/pic2.png' alt="Friend's Pic"/>
-                    <span className='FriendName'>Sashwat</span>
-                </li>
-                <li className='Friend'>
-                    <img className='FriendImage' src='/assets/profilePics/pic2.png' alt="Friend's Pic"/>
-                    <span className='FriendName'>Komal</span>
-                </li>
-                <li className='Friend'>
-                    <img className='FriendImage' src='/assets/profilePics/pic1.png' alt="Friend's Pic"/>
-                    <span className='FriendName'>Sahil</span>
-                </li>
-                <li className='Friend'>
-                    <img className='FriendImage' src='/assets/profilePics/pic1.png' alt="Friend's Pic"/>
-                    <span className='FriendName'>Sahil</span>
-                </li>
-                <li className='Friend'>
-                    <img className='FriendImage' src='/assets/profilePics/pic1.png' alt="Friend's Pic"/>
-                    <span className='FriendName'>Sahil</span>
-                </li>
-                <li className='Friend'>
-                    <img className='FriendImage' src='/assets/profilePics/pic1.png' alt="Friend's Pic"/>
-                    <span className='FriendName'>Sahil</span>
-                </li>
-                
+                {Users.map((user)=>{
+                    return(
+                        <li className='Friend'>
+                            <img className='FriendImage' src={user.profilePic} alt="Friend's Pic"/>
+                            <span className='FriendName'>{user.username}</span>
+                        </li>
+                    )
+                })}
             </ul>
         </div>
     </div>

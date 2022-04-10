@@ -23,8 +23,8 @@
 }
 
 .PostTopLeftImage{
-    height: 45px;
-    width: 45px;
+    height: 25px;
+    width: 25px;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -32,7 +32,7 @@
 .PostTopName{
     margin-left: 10px;
     font-size: large;
-    background-color: rgb(235, 232, 232);
+    background-color: rgb(250, 246, 246);
     border-radius: 2px;
     padding:3px;
     font-weight: bolder;
@@ -73,11 +73,13 @@
 }
 
 .PostBottomLike{
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
+    margin-left: 5px;
     border-radius: 50%;
     cursor: pointer;
     object-fit: contain;
+    margin-right: 5px;
 }
 
 .PostLikes{
@@ -89,9 +91,9 @@
 
 .PostBottomLove{
     cursor: pointer;
-    margin-left: 5px;
-    height: 30px;
-    width: 30px;
+    margin-right: 5px;
+    height: 20px;
+    width: 20px;
     object-fit: contain;
 }
 

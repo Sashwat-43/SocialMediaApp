@@ -1,5 +1,7 @@
 import React from 'react'
 import './RightSideBar.css';
+import {Users} from '../../CheckData';
+import OnlineFriend from '../OnlineFriend/OnlineFriend';
 
 export default function RightSideBar() {
   return (
@@ -10,37 +12,14 @@ export default function RightSideBar() {
           <span className='BirthdayText'><b>Komal's</b> birthday today</span>
           
         </div>
-        <img src='/assets/UseCase/advertisement.png' alt='Advertisement' className='AdvertisementImage'></img>
+        <a href='http://www.nitkkr.ac.in/' target='_blank'>
+          <img src='/assets/UseCase/advertisement.png' alt='Advertisement' className='AdvertisementImage'></img>
+        </a>
         <span className='RigthSideBarTitle'>Online Friends</span>
         <ul className='OnlineFriends'>
-          <li className='OnlineFriend'>
-            <div className='OnlineFriendContainer'>
-              <img className='OnlineFriendImage' src='/assets/ProfilePics/pic1.png' alt="Friend1"></img>
-              <span className='Online'></span>
-            </div>
-            <div className='OnlineFriendName'>Sashwat</div>
-          </li>
-          <li className='OnlineFriend'>
-            <div className='OnlineFriendContainer'>
-              <img className='OnlineFriendImage' src='/assets/ProfilePics/pic1.png' alt="Friend1"></img>
-              <span className='Online'></span>
-            </div>
-            <div className='OnlineFriendName'>Sashwat</div>
-          </li>
-          <li className='OnlineFriend'>
-            <div className='OnlineFriendContainer'>
-              <img className='OnlineFriendImage' src='/assets/ProfilePics/pic1.png' alt="Friend1"></img>
-              <span className='Online'></span>
-            </div>
-            <div className='OnlineFriendName'>Sashwat</div>
-          </li>
-          <li className='OnlineFriend'>
-            <div className='OnlineFriendContainer'>
-              <img className='OnlineFriendImage' src='/assets/ProfilePics/pic1.png' alt="Friend1"></img>
-              <span className='Online'></span>
-            </div>
-            <div className='OnlineFriendName'>Sashwat</div>
-          </li>
+          {Users.map(user => {
+            return <OnlineFriend user={user} key={user.id} />
+          })}
         </ul>
       </div>
     </div>

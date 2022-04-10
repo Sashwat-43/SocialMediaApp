@@ -1,7 +1,10 @@
 .LeftSideBar{
     height:calc(100vh - 70px);
-    flex: 3;
+    flex: 2;
     overflow-y: scroll;
+    position: sticky;
+    top:100px;
+    margin-right: 5px;
 }
 
 .LeftSideBarWrap{

@@ -1,9 +1,10 @@
 .RightSideBar{
-    flex:3
+    flex:2.8;
+    margin-left:5px;
 }
 
 .RightSideBarWrap{
-    padding:5px;
+    padding:3px;
 }
 
 .Birthday{
@@ -46,38 +47,3 @@
     list-style: none;
 }
 
-.OnlineFriend{
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.OnlineFriendImage{
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border: 2px solid white;
-    border-radius: 50%;
-}
-
-.OnlineFriendContainer{
-    margin-left: 10px;
-    position: relative;
-}
-
-.Online{
-    width: 12px;
-    height: 12px;
-    position: absolute;
-    border-radius: 50%; 
-    top:3px;
-    right:3px;
-    background-color: rgb(0, 253, 0);
-}
-
-.OnlineFriendName{
-    margin-top: 2px;
-    margin-left: 5px;
-    font-weight: bolder;
-    font-size: 16px;
-}
