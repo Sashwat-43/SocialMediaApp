@@ -1,14 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Post.css';
 import {MoreVert} from '@mui/icons-material';
 import {Users} from '../../CheckData';
 
 export default function Post({post}) {
 
+  const [likes,setLikes] = useState(post.likes);
+  const [isLiked,setIsLiked] = useState(false);
+  const [comments,setComments] = useState(post.comments);
+
   const user =Users.filter(checkUser =>{
     if(checkUser.id === post.userId)
       return checkUser;
   })
+
+  const HandleLikes = () =>{
+    if(isLiked){
+      setLikes(likes-1);
+      setIsLiked(false);
+    }else{
+      setLikes(likes+1);
+      setIsLiked(true);
+    }
+    
+  }
 
   return (
     <div className='Post'>
@@ -29,12 +44,12 @@ export default function Post({post}) {
         </div>
         <div className='PostBottom'>
           <div className='PostBottomLeft'>
-            <img src='/assets/Usecase/like.png' alt='like' className='PostBottomLike'></img>
-            <img src='/assets/Usecase/love.png' alt='love' className='PostBottomLove'></img>
-            <span className='PostLikes'>{post.likes} people reacted to it</span>
+            <img src='/assets/Usecase/like.png' alt='like' className='PostBottomLike' onClick={HandleLikes}></img>
+            <img src='/assets/Usecase/love.png' alt='love' className='PostBottomLove' onClick={HandleLikes}></img>
+            <span className='PostLikes'>{likes} people reacted to it</span>
           </div>
           <div className='PostBottomRight'>
-            <span className='PostComments'>{post.comments} comments</span>
+            <span className='PostComments'>{comments} comments</span>
           </div>
         </div>
       </div>
