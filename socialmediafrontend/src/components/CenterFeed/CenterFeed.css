@@ -1,7 +1,9 @@
 .CenterFeed{
     flex:6;
+    margin-left: 10px;
 }
 
 .CenterWrap{
-    padding:5px;
+    padding:10px;
+    max-width: calc(100%);
 }

@@ -30,7 +30,7 @@
 }
 
 .PostTopName{
-    margin-left: 10px;
+    margin-left: 1px;
     font-size: large;
     background-color: rgb(250, 246, 246);
     border-radius: 2px;
@@ -41,7 +41,7 @@
 .PostTopDate{
     font-weight: 100;
     font-size: small;
-    margin-left: 15px;
+    margin-left: 2px;
 }
 
 .Vertical{
@@ -75,7 +75,7 @@
 .PostBottomLike{
     height: 20px;
     width: 20px;
-    margin-left: 5px;
+    margin-left: 2px;
     border-radius: 50%;
     cursor: pointer;
     object-fit: contain;
@@ -83,7 +83,7 @@
 }
 
 .PostLikes{
-    margin-left: 5px;
+    margin-left: 2px;
     font-weight: bolder;
     font-size: 18px;
     font-family: 'Style Script', cursive;
@@ -91,7 +91,6 @@
 
 .PostBottomLove{
     cursor: pointer;
-    margin-right: 5px;
     height: 20px;
     width: 20px;
     object-fit: contain;

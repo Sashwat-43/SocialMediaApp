@@ -1,10 +1,14 @@
 .RightSideBar{
-    flex:2.8;
+    flex:4;
+    overflow-x: scroll;
     margin-left:5px;
+    margin-right: 5px;
 }
 
 .RightSideBarWrap{
-    padding:3px;
+    padding:5px;
+    margin-left: 10px;
+    min-width: 50px;
 }
 
 .Birthday{
@@ -20,7 +24,7 @@
 }
 
 .BirthdayText{
-    margin-left: 2px;
+    /* margin-left: 2px; */
     font-weight: lighter;
     font-size: 16px;
 }
@@ -28,7 +32,6 @@
 .AdvertisementImage{
     border-radius: 10px;
     margin-top: 20px;
-    margin-right: 2px;
     max-height: 200px;
     width: 100%;
     margin-bottom: 20px;
@@ -47,3 +50,56 @@
     list-style: none;
 }
 
+
+.MyProfileRightSideBarTitle{
+    text-decoration: underline;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+
+.MyProfileRightSideBarInfo{
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.MyProfileRightSideBarFollowings{
+    text-decoration: underline;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.followings{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.following{
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+
+.followingName{
+    /* margin-left: 5px; */
+    font-size: 17px;
+}
+
+.MyProfileRightSideBarValue{
+    margin-left: 5px;
+    font-style: italic;
+    color:rgb(119, 117, 115)
+}
+
+.MyProfileRightBottom{
+    margin-top: 20px;
+}
+
+.followingImage{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
