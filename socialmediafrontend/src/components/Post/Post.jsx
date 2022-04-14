@@ -8,6 +8,8 @@ export default function Post({post}) {
   const [likes,setLikes] = useState(post.likes);
   const [isLiked,setIsLiked] = useState(false);
   const [comments,setComments] = useState(post.comments);
+  const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
+
 
   const user =Users.filter(checkUser =>{
     if(checkUser.id === post.userId)
@@ -30,7 +32,7 @@ export default function Post({post}) {
       <div className='PostWrap'>
         <div className='PostTop'>
           <div className='PostTopLeft'>
-            <img src={user[0].profilePic} alt='Post1' className='PostTopLeftImage'></img>
+            <img src={publicFolder+user[0].profilePic} alt='Post1' className='PostTopLeftImage'></img>
             <span className='PostTopName'>{user[0].username}</span>
             <span className='PostTopDate'>{post.datePosted}</span>
           </div>
@@ -40,7 +42,7 @@ export default function Post({post}) {
         </div>
         <div className='PostMiddle'>
           <span className='PostMiddleText'>{post?.bio}</span>
-          <img src={post.image} alt='Post' className='PostMiddleImage'></img>
+          <img src={publicFolder+post.image} alt='Post' className='PostMiddleImage'></img>
         </div>
         <div className='PostBottom'>
           <div className='PostBottomLeft'>

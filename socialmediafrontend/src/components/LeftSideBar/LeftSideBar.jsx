@@ -4,6 +4,8 @@ import {Feed,Chat,Work,Event,Favorite,Bookmarks} from '@mui/icons-material';
 import {Users} from '../../CheckData';
 
 export default function LeftSideBar() {
+    const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
+
   return (
     <div className='LeftSideBar'>
         <div className='LeftSideBarWrap'>
@@ -51,7 +53,7 @@ export default function LeftSideBar() {
                 {Users.map((user)=>{
                     return(
                         <li className='Friend'>
-                            <img className='FriendImage' src={user.profilePic} alt="Friend's Pic"/>
+                            <img className='FriendImage' src={publicFolder+user.profilePic} alt="Friend's Pic"/>
                             <span className='FriendName'>{user.username}</span>
                         </li>
                     )

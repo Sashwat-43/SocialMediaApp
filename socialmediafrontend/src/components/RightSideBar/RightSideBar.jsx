@@ -28,6 +28,8 @@ export default function RightSideBar({MyProfile}) {
 
   const MyProfileRightSideBar = () =>{
 
+    const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
+
     return (
       <>
         <h2 className='MyProfileRightSideBarTitle'>Profile Info</h2>
@@ -45,7 +47,7 @@ export default function RightSideBar({MyProfile}) {
           {Users.map(user => {
             return (
               <div className='following'>
-                <img src={user.profilePic} alt='' className='followingImage'></img>
+                <img src={publicFolder+user.profilePic} alt='' className='followingImage'></img>
                 <span className='followingName'>{user.username}</span>
               </div>)
           })}
