@@ -150,13 +150,13 @@ router.put("/:id/unlike",async(req,res)=>{
 // we find all posts of user by simply using Post.find and search for all posts which have same userId as that of req.body.userId
 // we go to followings array of user with body.userId and then for each user in followings array we find the post they created with help of get api of post
 
-router.get("/allposts/all",async(req,res)=>{
+router.get("/allposts/:userId",async(req,res)=>{
     try{
-        const tempUser = await User.findById(req.body.userId);
+        const tempUser = await User.findById(req.params.userId);
         if(!tempUser){
             return res.status(404).json("No such user exists!");
         }
-        const userPosts = await Post.find({userId:req.body.userId});
+        const userPosts = await Post.find({userId:req.params.userId});
         const followersPosts = await Promise.all(
             tempUser.followings.map((follower) =>{
                 return Post.find({userId: follower});

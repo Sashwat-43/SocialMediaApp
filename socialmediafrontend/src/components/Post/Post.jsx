@@ -46,8 +46,8 @@ export default function Post({post}) {
         </div>
         <div className='PostBottom'>
           <div className='PostBottomLeft'>
-            <img src='/assets/Usecase/like.png' alt='like' className='PostBottomLike' onClick={HandleLikes}></img>
-            <img src='/assets/Usecase/love.png' alt='love' className='PostBottomLove' onClick={HandleLikes}></img>
+            <img src={publicFolder+'Usecase/like.png'} alt='like' className='PostBottomLike' onClick={HandleLikes}></img>
+            <img src={publicFolder+'Usecase/love.png'} alt='love' className='PostBottomLove' onClick={HandleLikes}></img>
             <span className='PostLikes'>{likes} people reacted to it</span>
           </div>
           <div className='PostBottomRight'>

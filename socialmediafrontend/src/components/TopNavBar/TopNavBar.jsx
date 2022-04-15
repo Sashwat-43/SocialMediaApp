@@ -1,13 +1,15 @@
 import React from 'react'
 import './TopNavBar.css'
 import {Person,Search,Notifications,Chat} from '@mui/icons-material';
-
+import {Link} from 'react-router-dom'
 
 export default function TopNavBar() {
   return (
     <div className='TopNavBarContainer'>
         <div className='TopNavBarLeft'>
-            <span className='icon'>Socialgram</span>
+            <Link to='/' className='IconLink'>
+                <span className='icon'>Socialgram</span>
+            </Link>
         </div>
         <div className='TopNavBarCenter'>
             <div className= 'TopNavBarSearch'>
