@@ -1,20 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
+import axios from 'axios'
 import './Post.css';
 import {MoreVert} from '@mui/icons-material';
-import {Users} from '../../CheckData';
+// import {Users} from '../../CheckData';
+import TimeAgo from 'timeago-react';
 
 export default function Post({post}) {
 
-  const [likes,setLikes] = useState(post.likes);
+  const [likes,setLikes] = useState(post.likes.length);
   const [isLiked,setIsLiked] = useState(false);
   const [comments,setComments] = useState(post.comments);
+  const [user,setUser] = useState({});
   const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
 
+  useEffect(()=>{
 
-  const user =Users.filter(checkUser =>{
-    if(checkUser.id === post.userId)
-      return checkUser;
-  })
+    const fetchuser = async () =>{
+      const response = await axios.get(`users/${post.userId}`);
+      setUser(response.data);
+    }
+    fetchuser();
+
+  },[post.userId]);
+
+  // const user =Users.filter(checkUser =>{
+  //   if(checkUser.id === post.userId)
+  //     return checkUser;
+  // })
 
   const HandleLikes = () =>{
     if(isLiked){
@@ -32,9 +44,11 @@ export default function Post({post}) {
       <div className='PostWrap'>
         <div className='PostTop'>
           <div className='PostTopLeft'>
-            <img src={publicFolder+user[0].profilePic} alt='Post1' className='PostTopLeftImage'></img>
-            <span className='PostTopName'>{user[0].username}</span>
-            <span className='PostTopDate'>{post.datePosted}</span>
+            <img src={user.profilePic?user.profilePic:publicFolder+'Usecase/profile.png'}  className='PostTopLeftImage'></img>
+            <span className='PostTopName'>{user.username}</span>
+            <span className='PostTopDate'>
+              <TimeAgo datetime = {post.createdAt}/>
+            </span>
           </div>
           <div className='PostTopRight'>
             <MoreVert className='Vertical'/>
@@ -42,7 +56,7 @@ export default function Post({post}) {
         </div>
         <div className='PostMiddle'>
           <span className='PostMiddleText'>{post?.bio}</span>
-          <img src={publicFolder+post.image} alt='Post' className='PostMiddleImage'></img>
+          <img src={publicFolder+post.image} alt='' className='PostMiddleImage'></img>
         </div>
         <div className='PostBottom'>
           <div className='PostBottomLeft'>

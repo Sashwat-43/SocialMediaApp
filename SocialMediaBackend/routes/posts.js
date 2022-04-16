@@ -60,8 +60,8 @@ router.get("/:id",async(req,res)=>{
         {
             return res.status(404).json("No such post exists!");
         }
-        const {userId,_id,bio,likes,...others} = tempPost;
-        res.status(200).json({userId,_id,bio,likes});
+        const {updatedAt,...others} = tempPost;
+        res.status(200).json(others);
     }catch(err){    
         res.status(404).json(err);
     }
@@ -152,6 +152,7 @@ router.put("/:id/unlike",async(req,res)=>{
 
 router.get("/allposts/:userId",async(req,res)=>{
     try{
+        console.log(req.protocol + '://' + req.get('host') + req.originalUrl);
         const tempUser = await User.findById(req.params.userId);
         if(!tempUser){
             return res.status(404).json("No such user exists!");

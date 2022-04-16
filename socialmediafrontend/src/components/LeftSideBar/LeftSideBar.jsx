@@ -52,7 +52,7 @@ export default function LeftSideBar() {
             <ul className='LeftSideBarFriends'>
                 {Users.map((user)=>{
                     return(
-                        <li className='Friend'>
+                        <li key={user.id} className='Friend'>
                             <img className='FriendImage' src={publicFolder+user.profilePic} alt="Friend's Pic"/>
                             <span className='FriendName'>{user.username}</span>
                         </li>

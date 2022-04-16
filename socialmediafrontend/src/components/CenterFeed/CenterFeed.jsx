@@ -14,19 +14,20 @@ export default function CenterFeed() {
   useEffect(()=>{
 
     const fetch = async () =>{
-      const response = await axios.get('posts/allposts/624d42fdda533f20e72b4b9e');
-      console.log(response);
+      const response = await axios.get('/posts/allposts/624d4260da533f20e72b4b9a');
+      setPosts(response.data);
     }
     fetch();
 
   },[])
+
   return (
     <div className='CenterFeed'>
       <div className='CenterWrap'>
         <SharePost/>
-        {/* {Posts.map((eachPost)=>{
-          return <Post post={eachPost} key={eachPost.id}/>
-        })} */}
+        {posts.map((eachPost)=>{
+          return <Post post={eachPost} key={eachPost._id}/>
+        })}
       </div>
     </div>
   )

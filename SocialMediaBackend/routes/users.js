@@ -94,8 +94,8 @@ router.get("/:id",async(req,res)=>{
         if(!tempUser){
             return res.status(404).json("No such user exists!");
         }
-        const {username,email,_id} = tempUser._doc
-        res.status(200).json({username,email,_id});
+        const {password,...others} = tempUser._doc
+        res.status(200).json(others);
 
     }catch(err){
         return res.status(400).json(err);
