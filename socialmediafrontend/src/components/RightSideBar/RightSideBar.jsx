@@ -39,11 +39,11 @@ export default function RightSideBar({User}) {
           <h2 className='MyProfileRightSideBarTitle'>Profile Info</h2>
           <div className='MyProfileRightSideBarInfo'>
             <span className='MyProfileRightSideBarkey'>City: </span>
-            <span className='MyProfileRightSideBarValue'>{User.city?User.city:'Lucknow'}</span>
+            <span className='MyProfileRightSideBarValue'>{User.city?User.city:'N/A'}</span>
           </div>
           <div className='MyProfileRightSideBarInfo'>
             <span className='MyProfileRightSideBarkey'>Relationship: </span>
-            <span className='MyProfileRightSideBarValue'>{User.relationship==1?'Single':'In a relationship'}</span>
+            <span className='MyProfileRightSideBarValue'>{User.relationship?(User.relationship==1?'Single':'In a relationship'):'N/A'}</span>
           </div>
           <h2 className='MyProfileRightSideBarFollowings'>Followings</h2>
           <div className='followings'>

@@ -202,5 +202,38 @@ router.put("/:id/unfollow",async(req,res)=>{
 
 })
 
+// getting all the following users of the user
+
+router.get("/followings/:id",async(req,res)=>{
+
+    // console.log(req.params.id);
+
+    try{
+
+        const getUser =  (id)=>{
+            const getTempUser =  User.findById(id);
+            return getTempUser;
+        }
+
+
+        const tempUser =await  User.findById(req.params.id);
+
+        console.log(tempUser.followings);
+
+       let check =[]
+       for await (following of tempUser.followings){
+            const get = await User.findById(following);
+            check.push(get);
+       }
+        // console.log(followingUsers());
+        // console.log(check);
+        return res.status(200).json(check);
+
+    }catch(err){
+        return res.status(400).json(err);
+    }
+
+})
+
 
 module.exports = router;
