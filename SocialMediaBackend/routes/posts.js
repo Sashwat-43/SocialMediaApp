@@ -145,6 +145,23 @@ router.put("/:id/unlike",async(req,res)=>{
     }
 })
 
+// get all posts of user
+
+router.get("/MyProfile/:username",async(req,res)=>{
+    try{
+        // console.log(req.protocol + '://' + req.get('host') + req.originalUrl);
+        const tempUser = await User.findOne({username:req.params.username});
+        if(!tempUser){
+            return res.status(404).json("No such user exists!");
+        }
+        const userPosts = await Post.find({userId:tempUser._id});
+        res.status(200).json(userPosts);
+    }catch(err){
+        res.status(404).json(err);
+    }
+})
+
+
 // getting all posts of user and user's followings 
 
 // we find all posts of user by simply using Post.find and search for all posts which have same userId as that of req.body.userId
@@ -152,7 +169,7 @@ router.put("/:id/unlike",async(req,res)=>{
 
 router.get("/allposts/:userId",async(req,res)=>{
     try{
-        console.log(req.protocol + '://' + req.get('host') + req.originalUrl);
+        // console.log(req.protocol + '://' + req.get('host') + req.originalUrl);
         const tempUser = await User.findById(req.params.userId);
         if(!tempUser){
             return res.status(404).json("No such user exists!");

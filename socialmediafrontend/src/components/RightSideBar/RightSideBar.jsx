@@ -3,8 +3,9 @@ import './RightSideBar.css';
 import {Users} from '../../CheckData';
 import OnlineFriend from '../OnlineFriend/OnlineFriend';
 
-export default function RightSideBar({MyProfile}) {
+export default function RightSideBar({User}) {
 
+  // console.log(User);
   const HomePageRightSideBar = () =>{
     return(
       <>
@@ -18,8 +19,8 @@ export default function RightSideBar({MyProfile}) {
         </a>
         <span className='RigthSideBarTitle'>Online Friends</span>
         <ul className='OnlineFriends'>
-          {Users.map(user => {
-            return <OnlineFriend user={user} key={user.id} />
+          {Users.map(tempUser => {
+            return <OnlineFriend user={tempUser} key={tempUser.id} />
           })}
         </ul>
       </>
@@ -29,37 +30,41 @@ export default function RightSideBar({MyProfile}) {
   const MyProfileRightSideBar = () =>{
 
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
-
+    // console.log(User.username);
+    // console.log(User);
+    if(!User||Object.keys(User).length==0)
+      return <></>;
     return (
-      <>
-        <h2 className='MyProfileRightSideBarTitle'>Profile Info</h2>
-        <div className='MyProfileRightSideBarInfo'>
-          <span className='MyProfileRightSideBarkey'>City: </span>
-          <span className='MyProfileRightSideBarValue'>Lucknow</span>
-        </div>
-        <div className='MyProfileRightSideBarInfo'>
-          <span className='MyProfileRightSideBarkey'>Relationship: </span>
-          <span className='MyProfileRightSideBarValue'>Single</span>
-        </div>
-        <h2 className='MyProfileRightSideBarFollowings'>Followings</h2>
-        <div className='followings'>
-          
-          {Users.map(user => {
-            return (
-              <div className='following'>
-                <img src={publicFolder+user.profilePic} alt='' className='followingImage'></img>
-                <span className='followingName'>{user.username}</span>
-              </div>)
-          })}
-        </div>
-      </>
-    )
+        <>
+          <h2 className='MyProfileRightSideBarTitle'>Profile Info</h2>
+          <div className='MyProfileRightSideBarInfo'>
+            <span className='MyProfileRightSideBarkey'>City: </span>
+            <span className='MyProfileRightSideBarValue'>{User.city?User.city:'Lucknow'}</span>
+          </div>
+          <div className='MyProfileRightSideBarInfo'>
+            <span className='MyProfileRightSideBarkey'>Relationship: </span>
+            <span className='MyProfileRightSideBarValue'>{User.relationship==1?'Single':'In a relationship'}</span>
+          </div>
+          <h2 className='MyProfileRightSideBarFollowings'>Followings</h2>
+          <div className='followings'>
+            {/* {User.followings.map(following => {
+              const tempUser = Users.findById(following._id);
+              console.log(tempUser);
+              return (
+                <div className='following'>
+                  <img src={publicFolder+tempUser.profilePic} alt='' className='followingImage'></img>
+                  <span className='followingName'>{tempUser.username}</span>
+                </div>)
+            })} */}
+          </div>
+        </>
+      )
 
   }
   return (
     <div className='RightSideBar'>
       <div className='RightSideBarWrap'>
-        {MyProfile?<MyProfileRightSideBar/>:<HomePageRightSideBar/>}
+        {User?<MyProfileRightSideBar/>:<HomePageRightSideBar/>}
       </div>
     </div>
   )

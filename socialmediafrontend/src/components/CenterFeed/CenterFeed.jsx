@@ -7,19 +7,27 @@ import {Posts} from '../../CheckData';
 import axios from 'axios';
 
 
-export default function CenterFeed() {
+export default function CenterFeed({username}) {
 
   const [posts,setPosts] = useState([]);
 
   useEffect(()=>{
 
     const fetch = async () =>{
-      const response = await axios.get('/posts/allposts/624d4260da533f20e72b4b9a');
-      setPosts(response.data);
+      // console.log(username);
+      if(username){
+        const response = await axios.get(`/posts/MyProfile/${username}`);
+        // console.log(response.data);
+        setPosts(response.data);
+      }else{
+        const response = await axios.get(`/posts/allposts/624d4260da533f20e72b4b9a`);
+        // console.log(response.data);
+        setPosts(response.data);
+      }
     }
     fetch();
 
-  },[])
+  },[username]);
 
   return (
     <div className='CenterFeed'>

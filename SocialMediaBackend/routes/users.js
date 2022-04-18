@@ -5,9 +5,9 @@ const User = require('../models/User');
 
 // Cred operations ->
 
-router.get("/",(req,res)=>{
-    res.send("Users home");
-})
+// router.get("/",(req,res)=>{
+//     res.send("Users home");
+// })
 
 // updating the user's info
 
@@ -82,15 +82,22 @@ router.delete("/:id",async(req,res)=>{
 })
 
 
-// reading/getting a particular user
 
-router.get("/:id",async(req,res)=>{
+// getting a user using query 
+
+router.get("/",async(req,res)=>{
+
+    const username = req.query.username;
+    const Id = req.query.userId;
+
+    // console.log(Id,username);
 
     try{
         // we find the user by using .findById and then show only important details like username,email and id
         // all other details are abstracted as they provide no significant use to the user
+        // if in query no userId is provided then we find out user with username
 
-        const tempUser = await User.findById(req.params.id);
+        const tempUser = Id? await User.findById(Id): await User.findOne({username:username});
         if(!tempUser){
             return res.status(404).json("No such user exists!");
         }
