@@ -1,11 +1,25 @@
 import React from 'react'
+import { useEffect, useState } from 'react';
 import './RightSideBar.css';
 import {Users} from '../../CheckData';
 import OnlineFriend from '../OnlineFriend/OnlineFriend';
+import axios from 'axios';
 
 export default function RightSideBar({User}) {
 
+  const [followings,setFollowings] = useState([]);
+
   // console.log(User);
+  useEffect(()=>{
+
+    const fetchuser = async () =>{
+      const response = await axios.get(`/users/followings/${User._id}`);
+      setFollowings(response.data);
+    }
+    fetchuser();
+
+  },[User]);
+
   const HomePageRightSideBar = () =>{
     return(
       <>
@@ -32,8 +46,8 @@ export default function RightSideBar({User}) {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
     // console.log(User.username);
     // console.log(User);
-    if(!User||Object.keys(User).length==0)
-      return <></>;
+
+
     return (
         <>
           <h2 className='MyProfileRightSideBarTitle'>Profile Info</h2>
@@ -47,15 +61,13 @@ export default function RightSideBar({User}) {
           </div>
           <h2 className='MyProfileRightSideBarFollowings'>Followings</h2>
           <div className='followings'>
-            {/* {User.followings.map(following => {
-              const tempUser = Users.findById(following._id);
-              console.log(tempUser);
+            {followings.map(following => {
               return (
                 <div className='following'>
-                  <img src={publicFolder+tempUser.profilePic} alt='' className='followingImage'></img>
-                  <span className='followingName'>{tempUser.username}</span>
+                  <img src={following.profilePic?publicFolder+`/ProfilePics/${following.profilePic}`:publicFolder+'/UseCase/profile.png'} alt='' className='followingImage'></img>
+                  <span className='followingName'>{following.username}</span>
                 </div>)
-            })} */}
+            })}
           </div>
         </>
       )

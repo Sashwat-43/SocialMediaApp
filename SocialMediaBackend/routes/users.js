@@ -218,7 +218,7 @@ router.get("/followings/:id",async(req,res)=>{
 
         const tempUser =await  User.findById(req.params.id);
 
-        console.log(tempUser.followings);
+        // console.log(tempUser.followings);
 
        let check =[]
        for await (following of tempUser.followings){
