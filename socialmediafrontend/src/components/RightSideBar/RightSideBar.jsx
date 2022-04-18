@@ -13,8 +13,13 @@ export default function RightSideBar({User}) {
   useEffect(()=>{
 
     const fetchuser = async () =>{
-      const response = await axios.get(`/users/followings/${User._id}`);
-      setFollowings(response.data);
+      if(!User||Object.keys(User).length==0)
+      {
+          setFollowings([]);
+      }else{
+        const response = await axios.get(`/users/followings/${User._id}`);
+        setFollowings(response.data);
+      }
     }
     fetchuser();
 
@@ -63,7 +68,7 @@ export default function RightSideBar({User}) {
           <div className='followings'>
             {followings.map(following => {
               return (
-                <div className='following'>
+                <div className='following' key={following._id}>
                   <img src={following.profilePic?publicFolder+`/ProfilePics/${following.profilePic}`:publicFolder+'/UseCase/profile.png'} alt='' className='followingImage'></img>
                   <span className='followingName'>{following.username}</span>
                 </div>)
