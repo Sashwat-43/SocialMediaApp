@@ -1,8 +1,38 @@
 import React from 'react'
+import {useRef} from 'react';
 import {Link} from 'react-router-dom'
 import './Register.css';
 
 export default function Register() {
+
+    const username = useRef(null);
+    const email = useRef(null);
+    const password =useRef(null);
+    const confirmpassword = useRef(null);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // console.log(username,email,password,confirmpassword);
+        const tempUsername = username.current.value;
+        const tempEmail = email.current.value;
+        const tempPassword = password.current.value;
+        const tempConfirmPassword = confirmpassword.current.value;
+        // console.log(tempUsername,tempEmail,tempPassword,tempConfirmPassword);
+        const regEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(regEx.test(tempEmail)){
+            if(tempPassword.length<6){
+                alert("Enter password of length atleast 6!");
+                return ;
+            }
+            if(tempPassword!=tempConfirmPassword){
+                alert("Paassword and confirm password do not match!");
+                return ;
+            }
+        }else{
+            alert("Invalid email! Use valid email");
+        }
+    }
+
   return (
     <div className='Register'>
         <div className='RegisterWrap'>
@@ -13,17 +43,17 @@ export default function Register() {
                 </span>
             </div>
             <div className='RegisterRight'>
-                <div className='RegisterContainer'>
-                    <input type='text' placeholder='username' className='RegisterUsername'></input>
-                    <input type='email' required placeholder='Email' className='RegisterEmail'></input>
-                    <input type='password' required placeholder='Password' className='RegisterPassword'></input>
-                    <input type='password' required placeholder='ConfirmPassword' className='RegisterConfirmPassword'></input>
+                <form className='RegisterContainer' onSubmit={handleSubmit }>
+                    <input type='text' required placeholder='username' ref={username} className='RegisterUsername'></input>
+                    <input type='text' required placeholder='Email' ref={email} className='RegisterEmail'></input>
+                    <input type='password' required placeholder='Password' ref={password} className='RegisterPassword'></input>
+                    <input type='password' required placeholder='ConfirmPassword' ref={confirmpassword} className='RegisterConfirmPassword'></input>
                     <button className='RegisterSubmit'>Sign Up</button>
                     <hr ></hr>
                     <Link to='/login' className='LinkLogin'>
                         <button className='LoginRedirect'>Already have an account? Sign In here</button>
                     </Link>
-                </div>
+                </form>
             </div>
         </div>
     </div>
