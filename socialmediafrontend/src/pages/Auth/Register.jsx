@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import './Register.css';
 
 export default function Register() {
@@ -14,12 +15,14 @@ export default function Register() {
             <div className='RegisterRight'>
                 <div className='RegisterContainer'>
                     <input type='text' placeholder='username' className='RegisterUsername'></input>
-                    <input type='text' placeholder='Email' className='RegisterEmail'></input>
-                    <input type='text' placeholder='Password' className='RegisterPassword'></input>
-                    <input type='text' placeholder='ConfirmPassword' className='RegisterConfirmPassword'></input>
+                    <input type='email' required placeholder='Email' className='RegisterEmail'></input>
+                    <input type='password' required placeholder='Password' className='RegisterPassword'></input>
+                    <input type='password' required placeholder='ConfirmPassword' className='RegisterConfirmPassword'></input>
                     <button className='RegisterSubmit'>Sign Up</button>
                     <hr ></hr>
-                    <button className='LoginSubmit'>Already have an account? Sign In here</button>
+                    <Link to='/login' className='LinkLogin'>
+                        <button className='LoginRedirect'>Already have an account? Sign In here</button>
+                    </Link>
                 </div>
             </div>
         </div>

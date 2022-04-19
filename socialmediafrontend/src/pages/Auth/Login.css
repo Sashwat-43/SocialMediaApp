@@ -78,17 +78,19 @@
     border:2px solid rgb(40, 106, 213);
 }
 
-.LoginSubmit{
+.RegisterRedirect{
     cursor: pointer;
-    width:90%;
+    width:60%;
     border-radius: 4px;
+    text-decoration: none;
     border: none;
     display: flex;
     margin: 0 auto;
     justify-content: center;
-    font-size: 24px;
+    font-size: 22px;
     padding: 6px;
     color:white;
+    text-decoration: none;
     background-color: rgb(38, 132, 214);
 }
 
@@ -100,7 +102,7 @@
     cursor: pointer;
 }
 
-.LoginSubmit:hover{
+.RegisterRedirect:hover{
     background-color: rgb(8, 111, 201);
 }
 
@@ -109,7 +111,7 @@
     transition: 1s;
 }
 
-.RegisterSubmit{
+.LoginSubmit{
     width:70%;
     margin:0 auto;
     padding: 10px;
@@ -117,11 +119,16 @@
     color: white;
     border: none;
     font-size: 17px;
+    text-decoration: none;
     padding: 6px;
     border-radius: 4px;
     background-color: rgb(37, 187, 7);
 }
 
-.RegisterSubmit:hover{
+.LoginSubmit:hover{
     background-color: rgb(36, 174, 8);
+}
+
+.LinkRegister{
+    text-decoration: none;
 }

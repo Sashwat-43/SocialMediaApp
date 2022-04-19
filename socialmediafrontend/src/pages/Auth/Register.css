@@ -110,19 +110,24 @@
     background-color: rgb(8, 111, 201);
 }
 
-.LoginSubmit{
-    width:70%;
-    margin:0 auto;
+.LoginRedirect{
+    width:80%;
+    margin-left: 10%;
     padding: 10px;
     cursor: pointer;
     color: white;
     border: none;
     font-size: 17px;
+    text-decoration: none;
     padding: 6px;
     border-radius: 4px;
     background-color: rgb(37, 187, 7);
 }
 
-.LoginSubmit:hover{
+.LoginRedirect:hover{
     background-color: rgb(36, 174, 8);
+}
+
+.LinkLogin{
+    margin: 0 auto;
 }
