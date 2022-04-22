@@ -44,7 +44,7 @@ export default function Post({post}) {
       <div className='PostWrap'>
         <div className='PostTop'>
           <div className='PostTopLeft'>
-          <Link to={`MyProfile/${user.username}`}>
+          <Link to={`/MyProfile/${user.username}`}>
             <img src={user.profilePic?publicFolder+`ProfilePics/${user.profilePic}`:publicFolder+'Usecase/profile.png'}  className='PostTopLeftImage'></img>
           </Link> 
             <span className='PostTopName'>{user.username}</span>

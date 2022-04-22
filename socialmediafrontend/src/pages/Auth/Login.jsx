@@ -1,12 +1,19 @@
 import React from 'react'
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 import {Link} from 'react-router-dom'
 import './Login.css';
+import { CircularProgress } from '@mui/material';
+import { LoginCheck } from '../../ApiCalls';
+import { Context } from '../../ContextApi/Context';
+
 
 export default function Login() {
 
     const email = useRef(null);
     const password =useRef(null);
+    const {user,isFetching,error,dispatch} = useContext(Context);
+
+    // console.log(user);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,7 +26,8 @@ export default function Login() {
             }
         }else{
             alert("Invalid email! Use valid email");
-        }
+        } 
+        LoginCheck({email:tempEmail,password:tempPassword},dispatch);
     }
 
   return (
@@ -35,7 +43,12 @@ export default function Login() {
                 <form className='LoginContainer' onSubmit={handleSubmit}>
                     <input type='text' ref={email} required placeholder='Email' className='LoginEmail'></input>
                     <input type='password' ref={password} required placeholder='Password' className='LoginPassword'></input>
-                    <button className='LoginSubmit'>Sign In</button>
+                    <button className='LoginSubmit'>
+                        {isFetching?
+                            <CircularProgress color="secondary" size="25px" transition="1s" />
+                        :
+                            "Sign In"}
+                    </button>
                     <span className='ForgotPassword'>Forgot Password?</span>
                     <hr ></hr>
                     <Link  to='/register' className='LinkRegister'>
