@@ -94,16 +94,33 @@ router.delete("/:id",async(req,res)=>{
     }
 })
 
-// liking /unliking post
+// liking  post
 
 // first of all we find whether post exists with this params.id or not
 // if not then we restrict this action and prompt that no such post exists
 // else now we check whether the user has already liked this post or not
-// if yes then we unlike the post
+// if yes then restrict this action
 // else we insert the user id in likes array of post with params.id
 
 
-router.put("/:id/likeunlike",async(req,res)=>{
+router.put("/:id/like",async(req,res)=>{
+    try{
+        const tempPost = await Post.findById(req.params.id);
+        if(!tempPost){
+            return res.status(501).json("No such post exists!");
+        }
+        if (tempPost.likes.includes(req.body.userId)){
+            res.status(501).json("Post already liked!");
+        }else{
+            await tempPost.updateOne({$push:{likes:req.body.userId}});
+            res.status(200).json("Post liked successfully!");
+        }
+    }catch(err){
+        res.status(404).json(err);
+    }
+})
+
+router.put("/:id/unlike",async(req,res)=>{
     try{
         const tempPost = await Post.findById(req.params.id);
         if(!tempPost){
@@ -113,8 +130,7 @@ router.put("/:id/likeunlike",async(req,res)=>{
             await tempPost.updateOne({$pull:{likes:req.body.userId}});
             res.status(200).json("Post unliked successfully!");
         }else{
-            await tempPost.updateOne({$push:{likes:req.body.userId}});
-            res.status(200).json("Post liked successfully!");
+            res.status(501).json("Post unliked already!");
         }
     }catch(err){
         res.status(404).json(err);

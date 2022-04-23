@@ -33,16 +33,23 @@ export default function Post({post}) {
 
 
   const HandleLikes = () =>{
-    try{
-      axios.put(`/posts/${post._id}/likeunlike`,{userId:CurrentUser._id});
 
-    }catch(err){
-      console.log(err);
-    }
     if(isLiked){
+      try{
+        axios.put(`/posts/${post._id}/unlike`,{userId:CurrentUser._id});
+  
+      }catch(err){
+        console.log(err);
+      }
       setLikes(likes-1);
       setIsLiked(false);
     }else{
+      try{
+        axios.put(`/posts/${post._id}/like`,{userId:CurrentUser._id});
+  
+      }catch(err){
+        console.log(err);
+      }
       setLikes(likes+1);
       setIsLiked(true);
     }

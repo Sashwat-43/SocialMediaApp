@@ -8,6 +8,7 @@ export default function SharePost() {
   const {user} = useContext(Context);
   const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
 
+
   return (
     <div className='SharePost'>
       <div className='SharePostWrap'>
