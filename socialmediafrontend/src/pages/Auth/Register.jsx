@@ -1,6 +1,7 @@
+import axios from 'axios';
 import React from 'react'
 import {useRef} from 'react';
-import {Link} from 'react-router-dom'
+import {Link , useNavigate} from 'react-router-dom'
 import './Register.css';
 
 export default function Register() {
@@ -9,24 +10,41 @@ export default function Register() {
     const email = useRef(null);
     const password =useRef(null);
     const confirmpassword = useRef(null);
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+
         e.preventDefault();
+
         // console.log(username,email,password,confirmpassword);
+
         const tempUsername = username.current.value;
         const tempEmail = email.current.value;
         const tempPassword = password.current.value;
         const tempConfirmPassword = confirmpassword.current.value;
+
         // console.log(tempUsername,tempEmail,tempPassword,tempConfirmPassword);
-        const regEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        const regEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         if(regEx.test(tempEmail)){
             if(tempPassword.length<6){
-                alert("Enter password of length atleast 6!");
+                alert("Enter password of length atleast 6");
                 return ;
             }
             if(tempPassword!=tempConfirmPassword){
                 alert("Paassword and confirm password do not match!");
                 return ;
+            }
+            const user = {
+                username: tempUsername,
+                email: tempEmail,
+                password: tempPassword
+            }
+            try{
+                const response = await axios.post('/auth/register',user);
+                navigate('/login');
+            }catch(err){
+                alert(err.response.data);
             }
         }else{
             alert("Invalid email! Use valid email");
