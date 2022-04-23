@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './TopNavBar.css'
 import {Person,Search,Notifications,Chat} from '@mui/icons-material';
 import {Link} from 'react-router-dom'
+import {Context} from '../../ContextApi/Context';
+import Register from '../../pages/Auth/Register';
 
 export default function TopNavBar() {
+
+    const {user} = useContext(Context);
+    const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
+
   return (
+    user?
     <div className='TopNavBarContainer'>
         <div className='TopNavBarLeft'>
             <Link to='/' className='IconLink'>
@@ -23,21 +30,13 @@ export default function TopNavBar() {
                 <span className='Link2'>Posts</span>
             </div>
             <div className='TopNavBarIcons'>
-                <div className='TopNavBarIcon'>
-                    <Person />
-                    <span className='TopNavBarIconCount'>2</span>
-                </div>
-                <div className='TopNavBarIcon'>
-                    <Chat />
-                    <span className='TopNavBarIconCount'>2</span>
-                </div>
-                <div className='TopNavBarIcon'>
-                    <Notifications /> 
-                    <span className='TopNavBarIconCount'>2</span>
-                </div>
             </div>
-            <img className='TopNavBarImage' src='/assets/profilePics/pic1.png' alt="image1"></img>
+            <Link to={`/MyProfile/${user.username}`}>
+                <img className='TopNavBarImage' src={user.profilePic ? publicFolder+`ProfilePics/${user.profilePic}` : publicFolder+'/UseCase/profile.png'} alt="image1"></img>
+            </Link>
         </div>
     </div>
+    :
+    <Register />
   )
 }
