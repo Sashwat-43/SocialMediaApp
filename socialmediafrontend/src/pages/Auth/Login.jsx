@@ -13,21 +13,23 @@ export default function Login() {
     const password =useRef(null);
     const {user,isFetching,error,dispatch} = useContext(Context);
 
-    // console.log(user);
 
-    const handleSubmit = (e) => {
+    const handleSubmit =async  (e) => {
         e.preventDefault();
         const tempEmail = email.current.value;
         const tempPassword = password.current.value;
-        const regEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        // console.log(tempEmail,tempPassword);
+        const regEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         if(regEx.test(tempEmail)){
             if(tempPassword.length<6){
-                alert("Enter password of length atleast 6!");
+                alert("Enter password of length > 6 !")
+            }else{
+                LoginCheck({email:tempEmail,password:tempPassword},dispatch);
             }
         }else{
-            alert("Invalid email! Use valid email");
-        } 
-        LoginCheck({email:tempEmail,password:tempPassword},dispatch);
+                alert("Enter valid email !")
+        }  
+        
     }
 
   return (
@@ -45,7 +47,7 @@ export default function Login() {
                     <input type='password' ref={password} required placeholder='Password' className='LoginPassword'></input>
                     <button className='LoginSubmit'>
                         {isFetching?
-                            <CircularProgress color="secondary" size="25px" transition="1s" />
+                            <CircularProgress className="loading" color="secondary" size="25px" />
                         :
                             "Sign In"}
                     </button>

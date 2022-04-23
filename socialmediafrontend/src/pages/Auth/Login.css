@@ -132,3 +132,7 @@
 .LinkRegister{
     text-decoration: none;
 }
+
+.loading{
+    transition: 1s;
+}

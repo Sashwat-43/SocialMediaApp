@@ -8,18 +8,26 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  useNavigate,
+  Navigate,
   Link
 } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Context } from "./ContextApi/Context";
+import { ConstructionOutlined } from "@mui/icons-material";
 
+const App = () => {
 
-function App() {
+  const {user} = useContext(Context);
+
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<HomePage/>}></Route>
-        <Route path='/register' element={<Register/>}></Route>
-        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/'  element={user ? <HomePage/> : <Register/> }></Route>
+        <Route path='/register' element={user ? <Navigate to='/' /> : <Register/>}></Route>
+        <Route path='/login' element={user ? <Navigate to='/' /> : <Login/>}></Route>
         <Route path='/MyProfile/:username' element={<MyProfile/>}></Route>
+        <Route path='*' element={<h1>Error 404! Page Not Found</h1>}/>
       </Routes>
     </Router>
     // <HomePage/>

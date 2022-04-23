@@ -18,13 +18,15 @@ router.post("/register",async(req,res)=>{
     const checkEmail = await User.findOne({email:req.body.email});
 
     if(checkUsername){
-        res.status(404).json("User already exists with same username!");
+        res.status(400).json("User already exists with same username!");
+        return ;
     }
    
     // check if user already exists with same email
 
     if(checkEmail){
-        res.status(404).json("User already exists with same email");
+        res.status(400).json("User already exists with same email");
+        return ;
     }
 
     // encrypting password
@@ -46,30 +48,33 @@ router.post("/register",async(req,res)=>{
         const user = await tempUser.save();
         res.status(200).json(user);
     }catch(err){
-        res.status(500).json(err);
+        console.log(err);
     }
 })
 
 // login user
 
 router.post("/login",async(req,res)=>{
-    const user = await User.findOne({email:req.body.email});
+    
     try{
+        const user = await User.findOne({email:req.body.email});
         if(!user){
-            res.status(404).json("No such user exists");
+            res.status(404).json("No such user exists!");
         }else{
             const isCorrectPassword = await bcrypt.compare(req.body.password,user.password);
-            if(!isCorrectPassword){
-                res.status(400).json("Incorrect Password");
-            }else{
+            if(isCorrectPassword){  
                 res.status(200).json(user);
+            }else{
+                res.status(404).json("Incorrect password!");
             }
         }
-    }catch(err){
-        res.status(500).json(err);
+        
     }
-
-})
+    catch(err){
+        res.status(404).json(err);
+    }
+}
+)
 
 
 module.exports = router;
