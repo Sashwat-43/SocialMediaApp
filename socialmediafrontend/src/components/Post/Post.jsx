@@ -1,17 +1,25 @@
-import React, { useState , useEffect } from 'react'
+import React, { useState , useEffect, useContext } from 'react'
 import axios from 'axios'
 import './Post.css';
 import {Link} from 'react-router-dom';
 import {MoreVert} from '@mui/icons-material';
 // import {Users} from '../../CheckData';
 import TimeAgo from 'timeago-react';
+import { Context } from '../../ContextApi/Context';
+
 
 export default function Post({post}) {
 
   const [likes,setLikes] = useState(post.likes.length);
   const [isLiked,setIsLiked] = useState(false);
   const [user,setUser] = useState({});
+  const CurrentUser = useContext(Context).user;
   const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
+
+
+  useEffect(() =>{
+    setIsLiked(post.likes.includes(CurrentUser._id));
+  },[post.likes,CurrentUser._id]);
 
   useEffect(()=>{
 
@@ -23,12 +31,14 @@ export default function Post({post}) {
 
   },[post.userId]);
 
-  // const user =Users.filter(checkUser =>{
-  //   if(checkUser.id === post.userId)
-  //     return checkUser;
-  // })
 
   const HandleLikes = () =>{
+    try{
+      axios.put(`/posts/${post._id}/likeunlike`,{userId:CurrentUser._id});
+
+    }catch(err){
+      console.log(err);
+    }
     if(isLiked){
       setLikes(likes-1);
       setIsLiked(false);
@@ -36,7 +46,6 @@ export default function Post({post}) {
       setLikes(likes+1);
       setIsLiked(true);
     }
-    
   }
 
   return (

@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './SharePost.css';
 import {PermMedia,EmojiEmotions,Label,Room} from "@mui/icons-material"
+import { Context } from '../../ContextApi/Context';
 
 export default function SharePost() {
+
+  const {user} = useContext(Context);
+  const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
+
   return (
     <div className='SharePost'>
       <div className='SharePostWrap'>
         <div className='SharePostTop'>
-          <img src='/assets/ProfilePics/pic1.png' alt='Image1' className='ShareTopProfile'></img>
+          <img src={user.profilePic ? publicFolder+`/ProfilePics/${user.profilePic}`: publicFolder+'/UseCase/profile.png' } alt='Image1' className='ShareTopProfile'></img>
             <input className='SharePostInput' placeholder='What to write?'></input>
         </div>
         <hr className='SharePostLine'></hr>

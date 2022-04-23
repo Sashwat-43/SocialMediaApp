@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './CenterFeed.css'
 import SharePost from '../SharePost/SharePost.jsx';
 import Post from '../Post/Post.jsx';
 import { LineAxisOutlined } from '@mui/icons-material';
 import {Posts} from '../../CheckData';
 import axios from 'axios';
+import { Context } from '../../ContextApi/Context';
 
 
 export default function CenterFeed({username}) {
 
   const [posts,setPosts] = useState([]);
+  const {user} = useContext(Context);
 
   useEffect(()=>{
 
@@ -20,14 +22,14 @@ export default function CenterFeed({username}) {
         // console.log(response.data);
         setPosts(response.data);
       }else{
-        const response = await axios.get(`/posts/allposts/624d4260da533f20e72b4b9a`);
+        const response = await axios.get(`/posts/allposts/${user._id}`);
         // console.log(response.data);
         setPosts(response.data);
       }
     }
     fetch();
 
-  },[username]);
+  },[username,user._id]);
 
   return (
     <div className='CenterFeed'>
