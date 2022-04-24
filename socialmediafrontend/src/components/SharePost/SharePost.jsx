@@ -8,7 +8,7 @@ export default function SharePost() {
 
   const {user} = useContext(Context);
   const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
-  const bio = useRef(null);
+  const bio = useRef();
   const [file,setFile] = useState(null);
 
   const handleMedia = (e) => {
@@ -20,6 +20,20 @@ export default function SharePost() {
     const tempPost = {
       userId: user._id,
       bio: bio.current.value
+    }
+
+    if(file){
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name",filename);
+      data.append("file",file);
+      tempPost.img = filename;
+      try{
+        await axios.post("/uploadMedia",data);
+
+      }catch(err){
+        console.log(err);
+      }
     }
     try{
 
@@ -35,7 +49,7 @@ export default function SharePost() {
       <div className='SharePostWrap'>
         <div className='SharePostTop'>
           <img src={user.profilePic ? publicFolder+`/ProfilePics/${user.profilePic}`: publicFolder+'/UseCase/profile.png' } alt='Image1' className='ShareTopProfile'></img>
-            <input className='SharePostInput' placeholder='What to write?'></input>
+            <input className='SharePostInput' ref={bio} placeholder='What to write?'></input>
         </div>
         <hr className='SharePostLine'></hr>
         <form className='SharePostBottom' onSubmit={ handleShareSubmit}>
@@ -44,7 +58,7 @@ export default function SharePost() {
               <label htmlFor='file' className='Option'>
                 <PermMedia style={{ color: "red" }} className='SharePostIcon'/>
                   <span className='ShareText'>Media</span>
-                  <input style={{display:"none"}}type="file" accept=".png .jpeg .jpg" id="file" onChange={handleMedia}/>
+                  <input style={{display:"none"}} type="file" accept=".png,.jpeg,.jpg" id="file" onChange={handleMedia}/>
               </label>
               <div className='Option'>
                 <Room style={{ color: "green" }} className='SharePostIcon'/>
