@@ -68,7 +68,7 @@ export default function Post({post}) {
               <TimeAgo datetime = {post.createdAt}/>
             </span>
           </div>
-          <div className='PostTopRight'>
+        <div className='PostTopRight'>
             <MoreVert className='Vertical'/>
           </div>
         </div>

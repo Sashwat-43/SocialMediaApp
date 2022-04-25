@@ -16,7 +16,7 @@ export default function CenterFeed({username}) {
   useEffect(()=>{
 
     const fetch = async () =>{
-      // console.log(username);
+      // console.log(username,user.username);
       if(username){
         const response = await axios.get(`/posts/MyProfile/${username}`);
         // console.log(response.data);
@@ -40,7 +40,7 @@ export default function CenterFeed({username}) {
   return (
     <div className='CenterFeed'>
       <div className='CenterWrap'>
-        <SharePost/>
+        {username &&username!=user.username?<></>:<SharePost/>}
         {posts.map((eachPost)=>{
           return <Post post={eachPost} key={eachPost._id}/>
         })}
