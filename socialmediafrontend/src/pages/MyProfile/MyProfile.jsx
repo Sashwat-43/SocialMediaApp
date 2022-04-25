@@ -26,7 +26,7 @@ export default function MyProfile() {
       setUser(response.data);
     }
     fetchuser();
-  },[]);
+  },[params.username]);
 
   return (
     <>

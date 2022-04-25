@@ -4,6 +4,7 @@ import './RightSideBar.css';
 import {Users} from '../../CheckData';
 import OnlineFriend from '../OnlineFriend/OnlineFriend';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 export default function RightSideBar({User}) {
 
@@ -69,7 +70,9 @@ export default function RightSideBar({User}) {
             {followings.map(following => {
               return (
                 <div className='following' key={following._id}>
-                  <img src={following.profilePic?publicFolder+`/ProfilePics/${following.profilePic}`:publicFolder+'/UseCase/profile.png'} alt='' className='followingImage'></img>
+                  <Link to={`/MyProfile/${following.username}`} >
+                    <img src={following.profilePic?publicFolder+`/ProfilePics/${following.profilePic}`:publicFolder+'/UseCase/profile.png'} alt='' className='followingImage'></img>
+                  </Link>  
                   <span className='followingName'>{following.username}</span>
                 </div>)
             })}
