@@ -1,15 +1,19 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect , useContext } from 'react';
 import axios from 'axios';
 import CenterFeed from '../../components/CenterFeed/CenterFeed';
 import LeftSideBar from '../../components/LeftSideBar/LeftSideBar';
 import RightSideBar from '../../components/RightSideBar/RightSideBar';
 import TopNavBar from '../../components/TopNavBar/TopNavBar';
 import './MyProfile.css';
-import {useParams} from 'react-router';
+import {useParams , useNavigate} from 'react-router';
+import { Context } from '../../ContextApi/Context';
 
 export default function MyProfile() {
 
+  const navigate = useNavigate();
+  const sessionUser = useContext(Context).user;
+  // const CurrentUser = useContext(Context);
   const [user,setUser] = useState({});
   const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
   const params = useParams();
@@ -18,10 +22,10 @@ export default function MyProfile() {
 
     const fetchuser = async () =>{
       const response = await axios.get(`/users?username=${params.username}`);
+        // console.log(response);
       setUser(response.data);
     }
     fetchuser();
-
   },[]);
 
   return (

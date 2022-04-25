@@ -26,7 +26,7 @@ const App = () => {
         <Route path='/'  element={user ? <HomePage/> : <Register/> }></Route>
         <Route path='/register' element={user ? <Navigate to='/' /> : <Register/>}></Route>
         <Route path='/login' element={user ? <Navigate to='/' /> : <Login/>}></Route>
-        <Route path='/MyProfile/:username' element={<MyProfile/>}></Route>
+        <Route path='/MyProfile/:username' element={user? <MyProfile/> : <Navigate to='/'/>}></Route>
         <Route path='*' element={<h1>Error 404! Page Not Found</h1>}/>
       </Routes>
     </Router>

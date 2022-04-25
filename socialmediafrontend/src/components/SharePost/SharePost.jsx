@@ -3,6 +3,7 @@ import axios from 'axios';
 import './SharePost.css';
 import {PermMedia,EmojiEmotions,Label,Room, LineAxisOutlined} from "@mui/icons-material"
 import { Context } from '../../ContextApi/Context';
+import { useNavigate } from 'react-router-dom';
 
 export default function SharePost() {
 
@@ -10,6 +11,7 @@ export default function SharePost() {
   const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
   const bio = useRef();
   const [file,setFile] = useState(null);
+  const navigate = useNavigate();
 
   const handleMedia = (e) => {
     setFile(e.target.files[0])
@@ -17,20 +19,25 @@ export default function SharePost() {
 
   const handleShareSubmit = async (e) =>{
     e.preventDefault();
+    if(!user){
+      navigate('/');
+    }
     const tempPost = {
       userId: user._id,
       bio: bio.current.value
-    }
+    };
+
+    // console.log(file);
 
     if(file){
-      const data = new FormData();
-      const filename = Date.now() + file.name;
+      let data = new FormData();
+      const filename = Date.now()+file.name;
       data.append("name",filename);
       data.append("file",file);
-      tempPost.img = filename;
+      tempPost.image = filename;
+      // console.log(data.get('name'),tempPost);
       try{
-        await axios.post("/uploadMedia",data);
-
+        const res = await axios.post("/uploadMedia",data);
       }catch(err){
         console.log(err);
       }
@@ -38,7 +45,7 @@ export default function SharePost() {
     try{
 
       const response = await axios.post('/posts',tempPost);
-      console.log(response);
+      // console.log(response);
     }catch(err){
       console.log(err);
     }

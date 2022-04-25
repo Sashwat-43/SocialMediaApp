@@ -29,7 +29,7 @@ export default function CenterFeed({username}) {
     }
     fetch();
 
-  },[username,user._id]);
+  },[username]);
 
   return (
     <div className='CenterFeed'>

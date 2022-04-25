@@ -74,7 +74,7 @@ export default function Post({post}) {
         </div>
         <div className='PostMiddle'>
           <span className='PostMiddleText'>{post?.bio}</span>
-          <img src={publicFolder+post.image} alt='' className='PostMiddleImage'></img>
+          <img src={post.image? publicFolder+`Posts/${post.image}`:publicFolder+'Usecase/post.png'} className='PostMiddleImage'></img>
         </div>
         <div className='PostBottom'>
           <div className='PostBottomLeft'>

@@ -13,7 +13,7 @@ const path = require("path");
 dotenv.config();
 
 
-// app.use("/images",express.static(path.join(__dirname,"public/images")));
+app.use("/images",express.static(path.join(__dirname,"public/images")));
 
 app.use(helmet());
 app.use(express.json());
@@ -21,15 +21,16 @@ app.use(morgan("common"));
 
 const storage = multer.diskStorage({
   destination: (req,file,cb)=>{
-    cb(null,"public/images");
+    cb(null,"public/images/Posts");
   },
   filename: (req,file,cb) =>{
-    cb(null,file.originalname);
+    cb(null,req.body.name);
   }
 });
 
 const upload = multer({storage});
 app.post('/api/uploadMedia', upload.single("file"),(req,res) => {
+  // console.log(req.body,req.body.name);
   try{
 
     return res.status(200).json("File uploaded!");
