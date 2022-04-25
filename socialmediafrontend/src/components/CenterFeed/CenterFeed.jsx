@@ -20,11 +20,17 @@ export default function CenterFeed({username}) {
       if(username){
         const response = await axios.get(`/posts/MyProfile/${username}`);
         // console.log(response.data);
-        setPosts(response.data);
+        const tempPosts = response.data;
+        // console.log(tempPosts);
+        tempPosts.sort(function(a, b){return new Date(b.createdAt) - new Date(a.createdAt)});
+        setPosts(tempPosts);
       }else{
         const response = await axios.get(`/posts/allposts/${user._id}`);
         // console.log(response.data);
-        setPosts(response.data);
+        const tempPosts = response.data;
+        // console.log(tempPosts);
+        tempPosts.sort(function(a, b){return new Date(b.createdAt) - new Date(a.createdAt)});
+        setPosts(tempPosts);
       }
     }
     fetch();

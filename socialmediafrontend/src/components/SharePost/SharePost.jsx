@@ -49,6 +49,8 @@ export default function SharePost() {
     }catch(err){
       console.log(err);
     }
+    navigate(`/MyProfile/${user.username}`);
+
   }
 
   return (
