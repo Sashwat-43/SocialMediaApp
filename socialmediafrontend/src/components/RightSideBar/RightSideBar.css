@@ -72,7 +72,7 @@
 .followings{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .following{
@@ -102,4 +102,61 @@
     width: 40px;
     height: 40px;
     object-fit: cover;
+}
+
+.FollowingUser{
+
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    color:white;
+    background-color: rgb(214, 24, 40);
+    cursor: pointer;
+}
+
+.FollowingUser:hover{
+    background-color: rgb(186, 19, 33);
+}
+
+.UnfollowingUser{
+
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    color:white;
+    background-color: rgb(203, 126, 55);
+    cursor: pointer;
+}
+
+.UnfollowingUser:hover{
+    background-color: rgb(188, 116, 28);
+}
+
+
+
+.message{
+
+    font-size: 30px;
+    font-family: 'Style Script', cursive;
+    margin-right: 10px;
+}   
+
+.Logout{
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 22px;
+    cursor: pointer;
+    background-color: rgb(81, 53, 195);
+    color:white;
+    border-radius: 5px;
+}
+
+.Logout:hover{
+    background-color: rgb(50, 13, 200);
 }

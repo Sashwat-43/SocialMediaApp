@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useEffect, useState } from 'react';
 import './RightSideBar.css';
 import {Users} from '../../CheckData';
 import OnlineFriend from '../OnlineFriend/OnlineFriend';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import { Context } from '../../ContextApi/Context';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 
 export default function RightSideBar({User}) {
 
   const [followings,setFollowings] = useState([]);
-
-  // console.log(User);
+  const user = useContext(Context).user;
+  const dispatch = useContext(Context).dispatch;
+  
   useEffect(()=>{
 
     const fetchuser = async () =>{
@@ -27,13 +31,9 @@ export default function RightSideBar({User}) {
   },[User]);
 
   const HomePageRightSideBar = () =>{
+
     return(
       <>
-        <div className='Birthday'>
-          <img src='/assets/UseCase/birthday.png' alt='Hapy Birthday' className='BirthdayImage'></img>
-          <span className='BirthdayText'><b>Komal's</b> birthday today</span>
-          
-        </div>
         <a href='http://www.nitkkr.ac.in/' target='_blank'>
           <img src='/assets/UseCase/advertisement.png' alt='Advertisement' className='AdvertisementImage'></img>
         </a>
@@ -49,13 +49,48 @@ export default function RightSideBar({User}) {
 
   const MyProfileRightSideBar = () =>{
 
+    const navigate = useNavigate();
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
+    const [isFollowing,setIsFollowing] = useState();
+
+    useEffect(() => {
+      // console.log(user.followings,User);
+      setIsFollowing(user.followings.includes(User?._id))
+    },[user,User]);
+
+
     // console.log(User.username);
     // console.log(User);
+
+    // console.log(User.username,user.username);
+
+    const handleFollowUnfollow = async (e) =>{
+      try{
+
+        if(isFollowing){
+          await axios.put(`/users/${User._id}/unfollow`,{userId:user._id});
+          dispatch({type:"UNFOLLOW",payload:User._id})
+        }else{
+          await axios.put(`/users/${User._id}/follow`,{userId:user._id});
+          dispatch({type:"FOLLOW",payload:User._id})
+        }
+
+
+      }catch(err){
+        console.log(err);
+      }
+      navigate('/');
+    }
+
+    const handleLogout = () =>{
+      window.location.reload(false);
+    }
 
 
     return (
         <>
+          {user.username===User.username? <button className='Logout' onClick={handleLogout}>SignOut</button> : <></>}
+          {user.username!=User.username ? <button className={isFollowing?"UnfollowingUser":"FollowingUser"} onClick={handleFollowUnfollow}> {isFollowing ? <> <span className='message'>Unfollow</span><PersonRemoveIcon/> </> : <> <span className='message'>Follow</span><PersonAddIcon/> </>} </button> : <></> }
           <h2 className='MyProfileRightSideBarTitle'>Profile Info</h2>
           <div className='MyProfileRightSideBarInfo'>
             <span className='MyProfileRightSideBarkey'>City: </span>
