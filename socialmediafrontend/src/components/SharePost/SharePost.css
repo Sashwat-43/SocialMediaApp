@@ -1,5 +1,4 @@
 .SharePost{
-    height:180px;
     width: 100%;
     margin: 5px auto;
     border-radius: 20px;
@@ -79,4 +78,24 @@
     border-radius: 3px;
     background-color: rgb(18, 74, 226);
     border: none;
+}
+
+.SharePostImage{
+    padding:10px;
+    position: relative;
+
+}
+
+.SharePost{
+    width: 100%;
+    object-fit: cover;
+}
+
+.ShareCancel{
+    position: absolute;
+    top:15px;
+    right:15px;
+    color:white;
+    opacity: 0.8;
+    cursor: pointer;
 }

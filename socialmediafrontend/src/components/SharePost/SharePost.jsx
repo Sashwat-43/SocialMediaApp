@@ -1,7 +1,7 @@
 import React, { useContext, useState , useRef } from 'react'
 import axios from 'axios';
 import './SharePost.css';
-import {PermMedia,EmojiEmotions,Label,Room, LineAxisOutlined} from "@mui/icons-material"
+import {PermMedia,EmojiEmotions,Label,Room, LineAxisOutlined, Cancel} from "@mui/icons-material"
 import { Context } from '../../ContextApi/Context';
 import { useNavigate } from 'react-router-dom';
 
@@ -61,6 +61,13 @@ export default function SharePost() {
             <input className='SharePostInput' ref={bio} placeholder='What to write?'></input>
         </div>
         <hr className='SharePostLine'></hr>
+        {file ? 
+          <div className='SharePostImage'>
+            <img src={URL.createObjectURL(file)} className='SharePost'></img>
+            <Cancel className="ShareCancel" onClick={()=>setFile(null)}/>
+          </div>
+         : 
+        <></>}
         <form className='SharePostBottom' onSubmit={ handleShareSubmit}>
           <div className='Container'>
             <div className='SharePostOptions'>
