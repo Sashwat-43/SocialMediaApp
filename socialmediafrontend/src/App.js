@@ -15,6 +15,7 @@ import {
 import { useContext, useEffect, useState } from "react";
 import { Context } from "./ContextApi/Context";
 import { ConstructionOutlined } from "@mui/icons-material";
+import EditProfile from "./pages/EditProfile/EditProfile";
 
 const App = () => {
 
@@ -27,6 +28,7 @@ const App = () => {
         <Route path='/register' element={user ? <Navigate to='/' /> : <Register/>}></Route>
         <Route path='/login' element={user ? <Navigate to='/' /> : <Login/>}></Route>
         <Route path='/MyProfile/:username' element={user? <MyProfile/> : <Navigate to='/'/>}></Route>
+        <Route path='/EditProfile' element={user?<EditProfile/> : <Navigate to='/'/>}></Route>
         <Route path='*' element={<h1>Error 404! Page Not Found</h1>}/>
       </Routes>
     </Router>

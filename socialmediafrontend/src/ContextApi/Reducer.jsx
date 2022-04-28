@@ -36,6 +36,11 @@ const Reducer = (state,action) =>{
                     followings: state.user.followings.filter(following => following !== action.payload)
                 }
             };
+        case "EDIT":
+            return {
+                ...state,
+                user: action.payload
+            };
         default:
             return state;
     }

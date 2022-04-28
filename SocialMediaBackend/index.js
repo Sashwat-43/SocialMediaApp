@@ -38,8 +38,19 @@ const storageProfile = multer.diskStorage({
   }
 });
 
+const storageCover = multer.diskStorage({
+  destination: (req,file,cb)=>{
+    cb(null,"public/images/CoverPics");
+  },
+  filename: (req,file,cb) =>{
+    // console.log(file);
+    cb(null,req.body.name);
+  }
+});
+
 const upload = multer({storage});
 const uploadProfile = multer({storage: storageProfile});
+const uploadCover = multer({storage: storageCover});
 
 
 app.post('/api/uploadMedia', upload.single("file"),(req,res) => {
@@ -58,6 +69,17 @@ app.post('/api/uploadProfilePic', uploadProfile.single("file"),(req,res) => {
   try{
     // console.log(req.body);
     return res.status(200).json("Profile Pic uploaded!");
+
+  }catch(err){
+    console.log(err);
+  }
+})
+
+app.post('/api/uploadCoverPic', uploadCover.single("file"),(req,res) => {
+  // console.log(req.body,req.body.name);
+  try{
+    // console.log(req.body);
+    return res.status(200).json("Cover Pic uploaded!");
 
   }catch(err){
     console.log(err);

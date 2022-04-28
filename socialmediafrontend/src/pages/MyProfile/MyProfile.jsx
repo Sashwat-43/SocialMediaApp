@@ -6,9 +6,11 @@ import LeftSideBar from '../../components/LeftSideBar/LeftSideBar';
 import RightSideBar from '../../components/RightSideBar/RightSideBar';
 import TopNavBar from '../../components/TopNavBar/TopNavBar';
 import './MyProfile.css';
+import { Link } from 'react-router-dom';
 import {useParams , useNavigate} from 'react-router';
 import { Context } from '../../ContextApi/Context';
-
+import { Fab } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 export default function MyProfile() {
 
   const navigate = useNavigate();
@@ -40,7 +42,15 @@ export default function MyProfile() {
                     <img className='MyProfileImage' alt='ProfileImage' src={user.profilePic?publicFolder+`ProfilePics/${user.profilePic}`:publicFolder+'Usecase/profile.png'}></img>
                 </div>
                 <div className='MyProfileInfo'>
-                    <h2 className='MyProfileName'>{user.username}</h2>
+                    <div className='Edit'>
+                      <span className='MyProfileName'>{user.username}</span>
+                      {user.username===sessionUser.username?
+                      <Link to='/EditProfile'>
+                        <Fab size='small' className='edit' color="secondary" aria-label="edit">
+                          <EditIcon fontSize='small' />
+                        </Fab>
+                      </Link>:<></>}
+                    </div>
                     <span className='MyProfileBio'>{user.bio}</span>
                 </div>
             </div>
