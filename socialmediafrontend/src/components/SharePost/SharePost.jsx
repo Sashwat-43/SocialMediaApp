@@ -70,25 +70,11 @@ export default function SharePost() {
         <></>}
         <form className='SharePostBottom' onSubmit={ handleShareSubmit}>
           <div className='Container'>
-            <div className='SharePostOptions'>
-              <label htmlFor='file' className='Option'>
+            <label htmlFor='file' className='Option'>
                 <PermMedia style={{ color: "red" }} className='SharePostIcon'/>
-                  <span className='ShareText'>Media</span>
-                  <input style={{display:"none"}} type="file" accept=".png,.jpeg,.jpg" id="file" onChange={handleMedia}/>
-              </label>
-              <div className='Option'>
-                <Room style={{ color: "green" }} className='SharePostIcon'/>
-                  <span className='ShareText'>Location</span>
-              </div>
-              <div className='Option'>
-                <Label style={{ color: "blue" }} className='SharePostIcon'/>
-                  <span className='ShareText'>Tag</span>
-              </div>
-              <div className='Option'>
-                <EmojiEmotions style={{ color: '#8B8000' }} className='SharePostIcon'/>
-                  <span className='ShareText'>Emotions</span>
-              </div>
-            </div>   
+                <span className='ShareText'>Upload Image</span>
+                <input style={{display:"none"}} type="file" accept=".png,.jpeg,.jpg" id="file" onChange={handleMedia}/>
+              </label> 
             <button className='SharePostButton' type='submit'>
               Share
             </button>

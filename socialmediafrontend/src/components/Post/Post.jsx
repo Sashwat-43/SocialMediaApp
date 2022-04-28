@@ -32,6 +32,8 @@ export default function Post({post}) {
   },[post.userId]);
 
 
+  // post.likes -> ["" , ""]
+
   const HandleLikes = () =>{
 
     if(isLiked){

@@ -39,8 +39,11 @@ router.post("/register",async(req,res)=>{
     const tempUser = new User({
         username: req.body.username,
         email: req.body.email,
-        password: encryptedPassword
+        password: encryptedPassword,
+        profilePic: req.body.profilePic
     });
+
+    console.log(tempUser);
         
     // exception handling and saving user in the db 
 

@@ -10,7 +10,7 @@ export default function HomePage() {
     <>
       <TopNavBar/>
       <div className='HomePage'>
-        <LeftSideBar/>
+        {/* <LeftSideBar/> */}
         <CenterFeed/>
         <RightSideBar/>
       </div>

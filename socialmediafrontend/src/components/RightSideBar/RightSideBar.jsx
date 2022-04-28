@@ -34,7 +34,8 @@ export default function RightSideBar({User}) {
 
     return(
       <>
-        <a href='http://www.nitkkr.ac.in/' target='_blank'>
+        <span className='Ad'>Advertisement</span>
+        <a href='http://www.nitkkr.ac.in/' target='_blank'>  
           <img src='/assets/UseCase/advertisement.png' alt='Advertisement' className='AdvertisementImage'></img>
         </a>
         <span className='RigthSideBarTitle'>Online Friends</span>
@@ -88,7 +89,7 @@ export default function RightSideBar({User}) {
 
 
     return (
-        <>
+        <div className='RightSideBar'>
           {user.username===User.username? <button className='Logout' onClick={handleLogout}>SignOut</button> : <></>}
           {user.username!=User.username ? <button className={isFollowing?"UnfollowingUser":"FollowingUser"} onClick={handleFollowUnfollow}> {isFollowing ? <> <span className='message'>Unfollow</span><PersonRemoveIcon/> </> : <> <span className='message'>Follow</span><PersonAddIcon/> </>} </button> : <></> }
           <h2 className='MyProfileRightSideBarTitle'>Profile Info</h2>
@@ -112,7 +113,7 @@ export default function RightSideBar({User}) {
                 </div>)
             })}
           </div>
-        </>
+        </div>
       )
 
   }

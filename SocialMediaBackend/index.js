@@ -28,12 +28,36 @@ const storage = multer.diskStorage({
   }
 });
 
+const storageProfile = multer.diskStorage({
+  destination: (req,file,cb)=>{
+    cb(null,"public/images/ProfilePics");
+  },
+  filename: (req,file,cb) =>{
+    // console.log(file);
+    cb(null,req.body.name);
+  }
+});
+
 const upload = multer({storage});
+const uploadProfile = multer({storage: storageProfile});
+
+
 app.post('/api/uploadMedia', upload.single("file"),(req,res) => {
-  // console.log(req.body,req.body.name);
+  // console.log(req.body);
   try{
 
     return res.status(200).json("File uploaded!");
+
+  }catch(err){
+    console.log(err);
+  }
+})
+
+app.post('/api/uploadProfilePic', uploadProfile.single("file"),(req,res) => {
+  // console.log(req.body,req.body.name);
+  try{
+    // console.log(req.body);
+    return res.status(200).json("Profile Pic uploaded!");
 
   }catch(err){
     console.log(err);

@@ -32,7 +32,7 @@ export default function MyProfile() {
     <>
       <TopNavBar/>
       <div className='MyProfile'>
-        <LeftSideBar/>
+        {/* <LeftSideBar/> */}
         <div className='MyProfileRight'>
             <div className='MyProfileRightTop'>
                 <div className='MyProfileCover'>

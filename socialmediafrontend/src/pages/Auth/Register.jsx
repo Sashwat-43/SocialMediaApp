@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React from 'react'
+import React, {useState} from 'react'
 import {useRef} from 'react';
 import {Link , useNavigate} from 'react-router-dom'
 import './Register.css';
+import { PermMedia } from '@mui/icons-material';
 
 export default function Register() {
 
@@ -11,6 +12,11 @@ export default function Register() {
     const password =useRef(null);
     const confirmpassword = useRef(null);
     const navigate = useNavigate();
+    const [file,setFile] = useState(null);
+
+    const handleUploadProfilePic = (e) => {
+        setFile(e.target.files[0])
+    }
 
     const handleSubmit = async (e) => {
 
@@ -35,13 +41,29 @@ export default function Register() {
                 alert("Paassword and confirm password do not match!");
                 return ;
             }
-            const user = {
-                username: tempUsername,
-                email: tempEmail,
-                password: tempPassword
-            }
             try{
-                const response = await axios.post('/auth/register',user);
+
+                const tempUser = {
+                    username: tempUsername,
+                    email: tempEmail,
+                    password: tempPassword,
+                };
+                if(file){
+
+                    let data = new FormData();
+                    const filename = Date.now()+file.name;
+                    data.append("name",filename);
+                    data.append("file",file);
+                    tempUser.profilePic = filename;
+                    // console.log(tempUser);
+                    try{
+                        const res = await axios.post("/uploadProfilePic",data);
+                    }catch(err){
+                    console.log(err);
+                    }
+                }
+
+                const response = await axios.post('/auth/register',tempUser);
                 navigate('/login');
             }catch(err){
                 alert(err.response.data);
@@ -66,6 +88,11 @@ export default function Register() {
                     <input type='text' required placeholder='Email' ref={email} className='RegisterEmail'></input>
                     <input type='password' required placeholder='Password' ref={password} className='RegisterPassword'></input>
                     <input type='password' required placeholder='ConfirmPassword' ref={confirmpassword} className='RegisterConfirmPassword'></input>
+                    <label htmlFor='file' className='Option'>
+                        <PermMedia style={{ color: "red" }} className='SharePostIcon'/>
+                        <span className='ShareText'>Upload Profile Pic</span>
+                        <input style={{display:"none"}} type="file" accept=".png,.jpeg,.jpg" id="file" onChange={handleUploadProfilePic}/>
+                    </label>
                     <button className='RegisterSubmit'>Sign Up</button>
                     <hr ></hr>
                     <Link to='/login' className='LinkLogin'>

@@ -1,5 +1,5 @@
 .RightSideBar{
-    flex:4;
+    flex:5;
     overflow-x: scroll;
     margin-left:5px;
     margin-right: 5px;
@@ -159,4 +159,9 @@
 
 .Logout:hover{
     background-color: rgb(50, 13, 200);
+}
+
+.Ad{
+    font-size: 26px;
+    font-style: italic;
 }

@@ -42,10 +42,6 @@ export default function TopNavBar() {
             </div>
         </div>
         <div className='TopNavBarRight'>
-            <div className='TopNavBarLinks'>
-                <span className='Link1'>Home</span>
-                <span className='Link2'>Posts</span>
-            </div>
             <div className='TopNavBarIcons'>
             </div>
             <Link to={`/MyProfile/${user.username}`}>
