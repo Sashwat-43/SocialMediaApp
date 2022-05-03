@@ -46,10 +46,11 @@ export default function MyProfile() {
                       <span className='MyProfileName'>{user.username}</span>
                       {user.username===sessionUser.username?
                       <Link to='/EditProfile'>
-                        <Fab size='small' className='edit' color="secondary" aria-label="edit">
-                          <EditIcon fontSize='small' />
+                        <Fab  size='small' className='EditIcon' color="secondary" aria-label="edit">
+                          <EditIcon  fontSize='small' />
                         </Fab>
-                      </Link>:<></>}
+                      </Link>
+                        :<></>}
                     </div>
                     <span className='MyProfileBio'>{user.bio}</span>
                 </div>

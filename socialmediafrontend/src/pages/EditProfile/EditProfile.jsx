@@ -8,6 +8,10 @@ import { PermMedia } from '@mui/icons-material';
 import { Context } from '../../ContextApi/Context';
 import './EditProfile.css';
 
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import NativeSelect from '@mui/material/NativeSelect';
+
 export default function EditProfile() {
 
     const username = useRef(null);
@@ -100,8 +104,22 @@ export default function EditProfile() {
                 <input type='text' placeholder='Username' ref={username} className='EditFormUsername' ></input>
                 <input type='text' placeholder='Bio' ref={bio} className='EditFormBio'></input>
                 <input type='text' placeholder='City' ref={city} className='EditFormCity' ></input>
-                <label for="cars">Choose a car:</label>
-                <input type='number' placeholder='Relationship( Type 1 for single, 2 for in a relationship )' ref={relationship} className='EditFormRelationship'></input>
+                <FormControl fullWidth>
+                    <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                        Relationship
+                    </InputLabel>
+                    <NativeSelect
+                        defaultValue={1}
+                        inputProps={{
+                        name: 'relationship',
+                        id: 'uncontrolled-native',
+                        }}
+                    >
+                        <option value={1} ref={relationship}>Single</option>
+                        <option value={2} ref={relationship}>In a relationship</option>
+                    </NativeSelect>
+                </FormControl>
+                {/* <input type='number' placeholder='Relationship( Type 1 for single, 2 for in a relationship )' ref={relationship} className='EditFormRelationship'></input> */}
                 <label className='EditFormText' htmlFor='file' >
                     <PermMedia style={{ color: "green" }} className='EditFormPostIcon'/>
                     <span className='EditFormProfileText'>Change Profile Pic</span>

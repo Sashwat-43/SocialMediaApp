@@ -45,6 +45,7 @@
 .MyProfileName{
     font-size: 26px;
     font-weight: bolder;
+    margin-right: 10px;
 }
 
 .MyProfileBio{
@@ -52,6 +53,8 @@
 
 }
 
-.edit{
+.EditIcon{
     margin-left: 10px;
+    z-index:-200;
+    cursor: pointer;
 }

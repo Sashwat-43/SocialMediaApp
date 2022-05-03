@@ -4,6 +4,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import MyProfile from "./pages/MyProfile/MyProfile";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
+import EditPost from './pages/EditPost/EditPost';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -29,6 +31,7 @@ const App = () => {
         <Route path='/login' element={user ? <Navigate to='/' /> : <Login/>}></Route>
         <Route path='/MyProfile/:username' element={user? <MyProfile/> : <Navigate to='/'/>}></Route>
         <Route path='/EditProfile' element={user?<EditProfile/> : <Navigate to='/'/>}></Route>
+        <Route path='/EditPost/:postId' element={user?<EditPost/> : <Navigate to='/'/>}></Route>
         <Route path='*' element={<h1>Error 404! Page Not Found</h1>}/>
       </Routes>
     </Router>

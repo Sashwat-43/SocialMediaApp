@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import {useRef} from 'react';
 import {Link , useNavigate} from 'react-router-dom'
 import './Register.css';
-import { PermMedia } from '@mui/icons-material';
+import { PermMedia,Cancel } from '@mui/icons-material';
 
 export default function Register() {
 
@@ -93,6 +93,13 @@ export default function Register() {
                         <span className='ShareText'>Upload Profile Pic</span>
                         <input style={{display:"none"}} type="file" accept=".png,.jpeg,.jpg" id="file" onChange={handleUploadProfilePic}/>
                     </label>
+                    {file ? 
+                    <div className='UploadProfileImage'>
+                        <img src={URL.createObjectURL(file)} className='UploadProfile'></img>
+                        <Cancel className="UploadProfileCancel" onClick={()=>setFile(null)}/>
+                    </div>
+                    : 
+                    <></>}
                     <button className='RegisterSubmit'>Sign Up</button>
                     <hr ></hr>
                     <Link to='/login' className='LinkLogin'>

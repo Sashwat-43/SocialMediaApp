@@ -2,10 +2,20 @@ import React, { useState , useEffect, useContext } from 'react'
 import axios from 'axios'
 import './Post.css';
 import {Link} from 'react-router-dom';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import {MoreVert} from '@mui/icons-material';
-// import {Users} from '../../CheckData';
 import TimeAgo from 'timeago-react';
 import { Context } from '../../ContextApi/Context';
+
+const options = [
+  'None',
+  'Edit',
+  'Remove'
+];
+
+const ITEM_HEIGHT = 48;
 
 
 export default function Post({post}) {
@@ -16,6 +26,15 @@ export default function Post({post}) {
   const CurrentUser = useContext(Context).user;
   const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
 
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   useEffect(() =>{
     setIsLiked(post.likes.includes(CurrentUser._id));
@@ -33,6 +52,10 @@ export default function Post({post}) {
 
 
   // post.likes -> ["" , ""]
+
+  const handleRemovePost = () =>{
+
+  }
 
   const HandleLikes = () =>{
 
@@ -71,7 +94,40 @@ export default function Post({post}) {
             </span>
           </div>
         <div className='PostTopRight'>
-            <MoreVert className='Vertical'/>
+          <IconButton
+            aria-label="more"
+            id="long-button"
+            aria-controls={open ? 'long-menu' : undefined}
+            aria-expanded={open ? 'true' : undefined}
+            aria-haspopup="true"
+            onClick={handleClick}
+          >
+            <MoreVert />
+          </IconButton>
+        <Menu
+          id="long-menu"
+          MenuListProps={{
+            'aria-labelledby': 'long-button',
+          }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          PaperProps={{
+            style: {
+              maxHeight: ITEM_HEIGHT * 4.5,
+              width: '20ch',
+            },
+          }}
+        > 
+          {options.map((option) => (
+            <MenuItem key={option} selected={option === 'None'} onClick={handleClose}>
+              {option==='Edit'?<Link to={`/EditPost/${post._id}`}>{option}</Link>:<></>}
+              {option==='Remove'?<button onClick={handleRemovePost}>{option}</button>:<></>}
+              {option==='None'?<span>{option}</span>:<></>}
+            </MenuItem>
+          ))}
+        </Menu>
+          {/* <MoreVert className='Vertical'/> */}
           </div>
         </div>
         <div className='PostMiddle'>
