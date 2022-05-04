@@ -41,8 +41,21 @@ const Reducer = (state,action) =>{
                 ...state,
                 user: action.payload
             };
+        case "ENABLE":
+            return {
+                ...state,
+                isActive:true,
+                val:action.payload
+            };
+        case "DISABLE":
+            return {
+                ...state,
+                isActive:false,
+                val:null
+            };
         default:
             return state;
+        
     }
 };
 

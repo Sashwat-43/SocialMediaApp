@@ -1,17 +1,15 @@
 import React, { useState , useEffect, useContext } from 'react'
 import axios from 'axios'
 import './Post.css';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import {MoreVert} from '@mui/icons-material';
 import TimeAgo from 'timeago-react';
-import { Context } from '../../ContextApi/Context';
+import { Context, Context_Recommend } from '../../ContextApi/Context';
 
 const options = [
-  'None',
-  'Edit',
   'Remove'
 ];
 
@@ -20,12 +18,18 @@ const ITEM_HEIGHT = 48;
 
 export default function Post({post}) {
 
+  // console.log(props.post,props.User);
+  // console.log(post.genre);
+
+  const navigate = useNavigate();
+
   const [likes,setLikes] = useState(post.likes.length);
   const [isLiked,setIsLiked] = useState(false);
   const [user,setUser] = useState({});
   const CurrentUser = useContext(Context).user;
   const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER_IMAGES;
 
+  // console.log(CurrentUser._id,User);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -53,8 +57,15 @@ export default function Post({post}) {
 
   // post.likes -> ["" , ""]
 
-  const handleRemovePost = () =>{
-
+  const handleRemovePost = async () =>{
+    // console.log(user,post,CurrentUser);
+    try{
+      // console.log(userId);
+      await axios.delete(`/posts/${post._id}`);
+      navigate(`/MyProfile/${CurrentUser.username}`);
+    }catch(err){
+      console.log(err);
+    }
   }
 
   const HandleLikes = () =>{
@@ -94,6 +105,8 @@ export default function Post({post}) {
             </span>
           </div>
         <div className='PostTopRight'>
+          {user._id===CurrentUser._id ?
+          <>
           <IconButton
             aria-label="more"
             id="long-button"
@@ -114,19 +127,17 @@ export default function Post({post}) {
           onClose={handleClose}
           PaperProps={{
             style: {
-              maxHeight: ITEM_HEIGHT * 4.5,
-              width: '20ch',
+              maxHeight: ITEM_HEIGHT * 2.5,
+              width: '10ch',
             },
           }}
         > 
           {options.map((option) => (
             <MenuItem key={option} selected={option === 'None'} onClick={handleClose}>
-              {option==='Edit'?<Link to={`/EditPost/${post._id}`}>{option}</Link>:<></>}
               {option==='Remove'?<button onClick={handleRemovePost}>{option}</button>:<></>}
-              {option==='None'?<span>{option}</span>:<></>}
             </MenuItem>
           ))}
-        </Menu>
+        </Menu></> : <></>}
           {/* <MoreVert className='Vertical'/> */}
           </div>
         </div>

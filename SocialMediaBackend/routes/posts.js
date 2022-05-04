@@ -80,15 +80,12 @@ router.get("/:id",async(req,res)=>{
 router.delete("/:id",async(req,res)=>{
     try{
         const tempPost = await Post.findById(req.params.id);
+        // console.log(tempPost,req.body);
         if(!tempPost){
             return res.status(404).json("No such post exists!");
         }
-        if(tempPost.userId==req.body.userId){
-            await tempPost.deleteOne();
-            res.status(200).json("Post deleted successfully!");
-        }else{
-            res.status(501).json("You have not created this post so you cannot delete this post!");
-        }
+        await tempPost.deleteOne();
+        res.status(200).json("Post deleted successfully!");
     }catch(err){
         res.status(404).json(err);
     }

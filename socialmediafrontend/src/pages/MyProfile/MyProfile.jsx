@@ -8,10 +8,12 @@ import TopNavBar from '../../components/TopNavBar/TopNavBar';
 import './MyProfile.css';
 import { Link } from 'react-router-dom';
 import {useParams , useNavigate} from 'react-router';
-import { Context } from '../../ContextApi/Context';
+import { Context, Context_Recommend } from '../../ContextApi/Context';
 import { Fab } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 export default function MyProfile() {
+
+  const setting = useContext(Context_Recommend).isActive;
 
   const navigate = useNavigate();
   const sessionUser = useContext(Context).user;

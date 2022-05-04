@@ -22,3 +22,11 @@ export const Unfollow = (userId)=>({
     payload:userId
 })
 
+export const ENABLE = (value)=>({
+    type:"ENABLE",
+    payload:value
+})
+
+export const DISABLE = ()=>({
+    type:"DISABLE",
+})

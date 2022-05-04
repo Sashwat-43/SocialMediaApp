@@ -2,11 +2,16 @@ import React, { useContext, useRef } from 'react'
 import './TopNavBar.css'
 import {Person,Search ,Notifications,Chat} from '@mui/icons-material';
 import {Link, Navigate, useNavigate} from 'react-router-dom'
-import {Context} from '../../ContextApi/Context';
+import {Context, Context_Recommend} from '../../ContextApi/Context';
 import Register from '../../pages/Auth/Register';
 import axios from 'axios';
 
 export default function TopNavBar() {
+
+    const setting = useContext(Context_Recommend).isActive;
+    const dispatch = useContext(Context_Recommend).dispatch;
+
+    // console.log(setting);
 
     const {user} = useContext(Context);
     const searchUser = useRef();
@@ -23,6 +28,14 @@ export default function TopNavBar() {
             console.log(err);
         }
 
+    }
+
+    const StopRecommend = () =>{
+        dispatch({type:"DISABLE"});
+    }
+
+    const StartRecommend = () =>{
+        dispatch({type:"ENABLE",payload:3});
     }
 
   return (
@@ -42,8 +55,12 @@ export default function TopNavBar() {
             </div>
         </div>
         <div className='TopNavBarRight'>
-            <div className='TopNavBarIcons'>
-            </div>
+            {setting
+            ?
+                <button onClick={StopRecommend}>Don't Recommend Posts</button>
+            :
+                <button onClick={StartRecommend}>Recommend Posts</button>
+            }
             <Link to={`/MyProfile/${user.username}`}>
                 <img className='TopNavBarImage' src={user.profilePic ? publicFolder+`ProfilePics/${user.profilePic}` : publicFolder+'/UseCase/profile.png'} alt="image1"></img>
             </Link>

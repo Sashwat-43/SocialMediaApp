@@ -4,20 +4,26 @@ import {useRef} from 'react';
 import {Link , useNavigate} from 'react-router-dom'
 import {useParams} from 'react-router';
 import './EditProfile.css';
-import { PermMedia } from '@mui/icons-material';
+import { PermMedia, Cancel } from '@mui/icons-material';
 import { Context } from '../../ContextApi/Context';
 import './EditProfile.css';
 
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 export default function EditProfile() {
 
+    
+    const options = [
+      'Single','In a relationship'
+    ];
     const username = useRef(null);
     const bio = useRef(null);
     const city = useRef(null);
-    const relationship = useRef(null);
+    const [relationship,setRelationship] = useState(null);
     const navigate = useNavigate();
     const [file,setFile] = useState(null);
     const [file2,setFile2] = useState(null);
@@ -35,10 +41,12 @@ export default function EditProfile() {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
+        console.log(relationship);
         const tempUsername = username.current.value;
         const tempBio = bio.current.value;
         const tempCity = city.current.value;
-        const tempRelationship = relationship.current.value;
+        // const tempRelationship = relationship.current.value;
+        // console.log(tempRelationship);
         try{
             const tempUser = {
                 userId: user._id,
@@ -47,7 +55,7 @@ export default function EditProfile() {
                 profilePic: user.profilePic,
                 coverPic: user.coverPic,
                 city: tempCity?tempCity:user.city,
-                relationship: tempRelationship?tempRelationship:user.relationship
+                relationship: relationship?relationship==='Single'?1:2:user.relationship
             };
             const tempUser2 = {
                 _id: user._id,
@@ -56,7 +64,7 @@ export default function EditProfile() {
                 profilePic: user.profilePic,
                 coverPic: user.coverPic,
                 city: tempCity?tempCity:user.city,
-                relationship: tempRelationship?tempRelationship:user.relationship
+                relationship: relationship?relationship==='Single'?1:2:user.relationship
             };
             if(file){
 
@@ -104,7 +112,7 @@ export default function EditProfile() {
                 <input type='text' placeholder='Username' ref={username} className='EditFormUsername' ></input>
                 <input type='text' placeholder='Bio' ref={bio} className='EditFormBio'></input>
                 <input type='text' placeholder='City' ref={city} className='EditFormCity' ></input>
-                <FormControl fullWidth>
+                {/* <FormControl fullWidth>
                     <InputLabel variant="standard" htmlFor="uncontrolled-native">
                         Relationship
                     </InputLabel>
@@ -118,18 +126,34 @@ export default function EditProfile() {
                         <option value={1} ref={relationship}>Single</option>
                         <option value={2} ref={relationship}>In a relationship</option>
                     </NativeSelect>
-                </FormControl>
+                </FormControl> */}
+
+                <Dropdown options={options} value={relationship} onChange={ (e) => setRelationship(e.target.value)} placeholder="Select your relationship status" />;
                 {/* <input type='number' placeholder='Relationship( Type 1 for single, 2 for in a relationship )' ref={relationship} className='EditFormRelationship'></input> */}
                 <label className='EditFormText' htmlFor='file' >
                     <PermMedia style={{ color: "green" }} className='EditFormPostIcon'/>
                     <span className='EditFormProfileText'>Change Profile Pic</span>
                     <input style={{display:"none"}} type="file" accept=".png,.jpeg,.jpg" id="file" onChange={handleUploadProfilePic}/>
                 </label>
+                {file ? 
+                    <div className='UploadProfileImage'>
+                        <img src={URL.createObjectURL(file)} className='UploadProfile'></img>
+                        <Cancel className="UploadProfileCancel" onClick={()=>setFile(null)}/>
+                    </div>
+                    : 
+                <></>}
                 <label className='EditFormText' htmlFor='file2' >
                     <PermMedia style={{ color: "green" }} className='EditFormPostIcon'/>
                     <span className='EditFormProfileText'>Change Cover Pic</span>
                     <input style={{display:"none"}} type="file" accept=".png,.jpeg,.jpg" id="file2" onChange={handleUploadCoverPic}/>
                 </label>
+                {file2 ? 
+                    <div className='UploadCoverImage'>
+                        <img src={URL.createObjectURL(file2)} className='UploadCover'></img>
+                        <Cancel className="UploadCoverCancel" onClick={()=>setFile2(null)}/>
+                    </div>
+                    : 
+                <></>}
                 <button className='EditFormSubmit'>Edit Profile!</button>
             </form>
         </div>

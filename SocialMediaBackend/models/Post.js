@@ -17,6 +17,10 @@ const PostSchema = new mongoose.Schema(
         image:{
             type:String,
             default:''
+        },
+        genre:{
+            type:String,
+            default:"Random"
         }
     },
 {timestamps:true}
